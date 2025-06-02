@@ -482,8 +482,6 @@ section p {
 .projects-section {
   background-color: var(--background-dark);
   padding: 6rem 2rem;
-  padding-left: 0;
-  padding-right: 0;
   width: 100%;
   max-width: none;
   box-sizing: border-box;
@@ -1115,6 +1113,7 @@ section p {
 }
 
 /* アクティブ状態のスタイル */
+
 .projects-carousel .carousel-button:active {
   background-color: var(--primary-color-dark);
   transform: translateY(-50%) scale(0.95);
@@ -1124,3 +1123,13 @@ section p {
 .projects-carousel .carousel-button:active i {
   color: white;
 }
+
+/* 横スクロールバーをページ全体で非表示にする */
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  position: relative;
+}
+
