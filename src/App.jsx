@@ -8,57 +8,72 @@ function App() {
 
   const projects = [
     {
-      title: "プロジェクト1",
-      description: "プロジェクトの説明をここに書きます。",
-      image: "/path-to-project1.jpg",
-      tags: ["React", "Node.js"],
+      title: "サンプルプロジェクト 1",
+      description: "これはサンプルプロジェクトの説明です。ここにプロジェクトの概要が入ります。このプロジェクトはReactとNode.jsを使用して開発されました。",
+      image: "https://via.placeholder.com/600x400?text=Project+Image+1",
+      tags: ["React", "Node.js", "Express"],
       demoLink: "#",
       githubLink: "#"
     },
     {
-      title: "プロジェクト2",
-      description: "プロジェクトの説明をここに書きます。",
-      image: "/path-to-project2.jpg",
-      tags: ["React", "Firebase"],
+      title: "サンプルプロジェクト 2",
+      description: "これはサンプルプロジェクトの説明です。最新のWeb技術を駆使して作られた、インタラクティブなアプリケーションです。",
+      image: "https://via.placeholder.com/600x400?text=Project+Image+2",
+      tags: ["JavaScript", "HTML5", "CSS3", "API"],
       demoLink: "#",
       githubLink: "#"
     },
     {
-      title: "プロジェクト3",
-      description: "プロジェクトの説明をここに書きます。",
-      image: "/path-to-project3.jpg",
-      tags: ["React", "MongoDB"],
+      title: "サンプルプロジェクト 3",
+      description: "このプロジェクトは、ユーザー中心の設計を重視し、直感的なUI/UXを提供することを目的としています。",
+      image: "https://via.placeholder.com/600x400?text=Project+Image+3",
+      tags: ["Vue.js", "Firebase", "PWA"],
+      demoLink: "#",
+      githubLink: "#"
+    },
+    {
+      title: "サンプルプロジェクト 4",
+      description: "データ分析と視覚化に焦点を当てたプロジェクトです。D3.jsなどのライブラリを活用しています。",
+      image: "https://via.placeholder.com/600x400?text=Project+Image+4",
+      tags: ["Python", "Flask", "D3.js"],
       demoLink: "#",
       githubLink: "#"
     }
   ];
 
+  const numProjects = projects.length;
+
+  // Sample News Items
+  const newsItems = [
+    {
+      id: 1,
+      date: "2025年5月28日",
+      title: "ハッカソン「CodeWave 2025」に参加しました！",
+      content: "先日開催されたCodeWave 2025ハッカソンにチームで参加し、革新的なWebアプリケーションのプロトタイプを開発しました。惜しくも入賞は逃しましたが、多くの学びと素晴らしい経験を得ることができました。",
+      link: "#" // Optional link to a blog post or more details
+    },
+    {
+      id: 2,
+      date: "2025年4月15日",
+      title: "新しいスキルとしてGraphQLの学習を開始",
+      content: "現代的なAPI開発のトレンドを追い、GraphQLの学習を始めました。効率的なデータ取得と柔軟なクエリに感銘を受けています。今後のプロジェクトで活用していく予定です。",
+      link: "#"
+    },
+    {
+      id: 3,
+      date: "2025年3月1日",
+      title: "ポートフォリオサイトをリニューアル！",
+      content: "このポートフォリオサイトを、よりモダンで洗練されたデザインにアップデートしました。新しい技術スタックも導入し、パフォーマンスも向上しています。ぜひご覧ください。",
+      link: "#"
+    }
+  ];
+
   const nextProject = () => {
-    const currentCard = document.querySelector('.project-card.active');
-    currentCard.classList.add('slide-left');
-    currentCard.classList.remove('active');
-    
-    setCurrentProject((prev) => {
-      const next = (prev + 1) % projects.length;
-      const nextCard = document.querySelector(`.project-card:nth-child(${next + 1})`);
-      nextCard.classList.add('slide-center');
-      nextCard.classList.add('active');
-      return next;
-    });
+    setCurrentProject((prev) => (prev + 1) % projects.length);
   };
 
   const prevProject = () => {
-    const currentCard = document.querySelector('.project-card.active');
-    currentCard.classList.add('slide-right');
-    currentCard.classList.remove('active');
-    
-    setCurrentProject((prev) => {
-      const next = (prev - 1 + projects.length) % projects.length;
-      const nextCard = document.querySelector(`.project-card:nth-child(${next + 1})`);
-      nextCard.classList.add('slide-center');
-      nextCard.classList.add('active');
-      return next;
-    });
+    setCurrentProject((prev) => (prev - 1 + projects.length) % projects.length);
   };
 
   return (
@@ -149,56 +164,54 @@ function App() {
         <section id="projects" className="projects-section">
           <h2>Projects</h2>
           <div className="projects-carousel">
-            <button className="carousel-button prev" onClick={prevProject}>
-              <span className="button-text">前へ</span>
-              <i className="fas fa-chevron-left"></i>
-            </button>
-            
-            <div className="projects-container">
-              {projects.map((project, index) => (
-                <div
-                  key={index}
-                  className={`project-card ${index === currentProject ? 'active' : ''}`}
-                  style={{
-                    transform: `translateX(${(index - currentProject) * 100}%)`,
-                  }}
-                >
-                  <div className="project-image">
-                    <img src={project.image} alt={project.title} />
+            <button className="carousel-button prev" onClick={prevProject}><i className="fas fa-chevron-left">&#8249;</i></button>
+            <div className="project-viewport">
+              <div
+                className="projects-container"
+                style={{
+                  width: `${numProjects * 100}%`,
+                  transform: `translateX(-${currentProject * (100 / numProjects)}%)`,
+                }}
+              >
+                {projects.map((project, index) => (
+                  <div
+                    key={index}
+                    className="project-card"
+                    style={{
+                      width: `${100 / numProjects}%`, // Each card takes 1/numProjects of the container width
+                    }}
+                  >
+                    <img src={project.image} alt={project.title} className="project-image" />
+                    <h3 className="project-title">{project.title}</h3>
+                    <p className="project-description">{project.description}</p>
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link">View Project</a>
                   </div>
-                  <div className="project-info">
-                    <h3>{project.title}</h3>
-                    <p>{project.description}</p>
-                    <div className="project-tags">
-                      {project.tags.map((tag, i) => (
-                        <span key={i}>{tag}</span>
-                      ))}
-                    </div>
-                    <div className="project-links">
-                      <a href={project.demoLink} target="_blank" rel="noopener noreferrer">デモ</a>
-                      <a href={project.githubLink} target="_blank" rel="noopener noreferrer">GitHub</a>
-                    </div>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-
-            <button className="carousel-button next" onClick={nextProject}>
-              <span className="button-text">次へ</span>
-              <i className="fas fa-chevron-right"></i>
-            </button>
-
-            <div className="carousel-indicators">
-              {projects.map((_, index) => (
-                <button
-                  key={index}
-                  className={`indicator ${index === currentProject ? 'active' : ''}`}
-                  onClick={() => setCurrentProject(index)}
-                />
-              ))}
-            </div>
+            <button className="carousel-button next" onClick={nextProject}><i className="fas fa-chevron-right">&#8250;</i></button>
           </div>
         </section>
+
+        {/* News Section - ADDED */}
+        <section id="news" className="news-section">
+          <h2>News</h2>
+          <div className="news-container">
+            {newsItems.map((item) => (
+              <div key={item.id} className="news-item">
+                <p className="news-date">{item.date}</p>
+                <h3 className="news-title">{item.title}</h3>
+                <p className="news-content">{item.content}</p>
+                {item.link && item.link !== "#" && (
+                  <a href={item.link} target="_blank" rel="noopener noreferrer" className="news-link">
+                    続きを読む <i className="fas fa-arrow-right"></i>
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+        {/* END News Section */}
 
         <section id="skills" className="skills-section">
           <h2>Skills</h2>

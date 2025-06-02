@@ -2,11 +2,61 @@ html {
   scroll-behavior: smooth;
 }
 
+.header {
+  width: 100%;
+  background-color: #282c34; /* Darker background for better contrast */
+  padding: 0.25rem 0; /* Further reduced vertical padding */
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+}
+
+/* Styles for the elements that previously had inline styles */
+.header-inner-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Ensure the container uses full available width */
+  max-width: 1100px; /* Slightly reduced max-width */
+  padding: 0 1rem; /* Add some horizontal padding */
+}
+
+/* .logo-container is primarily styled inline in Header.jsx */
+
+.logo-container {
+  display: flex; /* Added for aligning logo and title */
+  align-items: center; /* Added for aligning logo and title */
+}
+
+.logo {
+  height: 30px; /* Adjust logo size */
+  margin-right: 0.5rem; /* Space between logo and title */
+}
+
+.title {
+  color: #ffffff; /* White color for the title */
+  font-size: 1.3rem; /* Adjust title font size */
+  margin: 0; /* Remove default margin */
+}
+
+.header-nav {
+  margin-left: auto; /* Default for larger screens */
+}
+
+.header-nav-list {
+  display: flex;
+  list-style: none; /* Added from inline style */
+  gap: 1.5rem; /* Added from inline style */
+  margin: 0; /* Added from inline style */
+  padding: 0; /* Added from inline style */
+}
+
 .nav-link {
   color: white;
   text-decoration: none;
   font-weight: bold;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem; /* Adjusted padding */
+  font-size: 0.9rem; /* Added font-size */
   border-radius: 4px;
   transition: all 0.3s ease;
   position: relative;
@@ -35,5 +85,44 @@ html {
 }
 
 .nav-link:hover::after {
-  width: 80%;
-} 
+  width: 90%;
+}
+
+/* Responsive styles */
+@media (max-width: 500px) {
+  .header-inner-container {
+    flex-direction: column;
+    align-items: flex-start;
+    /* border: 2px solid lime; */ /* Test border removed */
+  }
+
+  .header-nav {
+    margin-left: 0; /* Reset margin for stacking */
+    margin-top: 1rem; /* Add space between logo and nav */
+    width: 100%;
+  }
+
+  .header-nav-list {
+    flex-direction: column;
+    gap: 0.5rem; 
+    align-items: flex-start; 
+    width: 100%;
+    /* border: 2px solid yellow; */ /* Test border removed */
+  }
+
+  .nav-link {
+    padding: 0.5rem 0; /* Adjust padding for vertical items */
+    display: block; /* Make links take full width */
+    width: 100%;
+    text-align: left;
+  }
+
+  .nav-link:hover::after {
+    width: 100%; /* Make hover effect full width */
+  }
+
+  /* Test background color for .header removed */
+  /* .header { 
+    background-color: purple !important; 
+  } */
+}
