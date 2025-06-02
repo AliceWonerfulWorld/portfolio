@@ -216,27 +216,28 @@ section p {
 
 .social-links {
   display: flex;
-  gap: 2rem;
+  gap: 3rem;
   justify-content: center;
   animation: fadeInUp 1s ease 0.6s;
   animation-fill-mode: both;
+  margin-bottom: 4rem; /* Add margin to create space above scroll indicator */
 }
 
 .social-links a {
-  color: var(--secondary-color); /* Lighter links for dark background */
-  font-size: 1.8rem;
+  color: var(--secondary-color);
+  font-size: 2.2rem; /* Increased size for better visibility */
   transition: all 0.3s ease;
   position: relative;
 }
 
 .social-links a:hover {
-  color: var(--accent-color-1); /* Gold hover for social links */
+  color: var(--accent-color-1);
   transform: translateY(-3px);
 }
 
 .scroll-indicator {
   position: absolute;
-  bottom: 2rem;
+  bottom: 3rem; /* Increased distance from bottom */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -248,8 +249,9 @@ section p {
 
 .scroll-indicator span {
   font-size: 1rem;
-  color: var(--secondary-color); /* Lighter text for scroll indicator */
+  color: var(--secondary-color);
   font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Added text shadow for better readability */
 }
 
 /* About Section Styles */
@@ -257,6 +259,7 @@ section p {
   background-color: var(--background-light);
   padding-top: 6rem;
   padding-bottom: 6rem;
+  position: relative;
 }
 
 .about-content {
@@ -353,9 +356,17 @@ section p {
 
 /* Experience Section */
 .experience-section {
-  background-color: var(--background-light);
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+  background-color: var(--secondary-bg-color);
+  padding: 6rem 2rem;
+  width: 100%;
+  max-width: none;
+  position: relative;
+}
+
+.experience-section .timeline {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 /* section h2 is already defined globally and will apply here */
@@ -401,7 +412,7 @@ section p {
 }
 
 .timeline-content {
-  background: var(--card-bg-color);
+  background: var(--background-light);
   border-radius: var(--border-radius-medium);
   box-shadow: var(--shadow-medium);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -700,28 +711,43 @@ section p {
 
 /* Skills Section Styles */
 .skills-section {
-  padding: 60px 20px;
-  background-color: var(--secondary-bg-color); /* Consistent background */
-  text-align: center;
+  background-color: var(--secondary-bg-color);
+  padding: 6rem 0;
+  width: 100%;
+  max-width: none;
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+  overflow: hidden;
 }
 
-.skills-section h2 {
-  font-size: 2.5rem;
-  color: var(--primary-color);
-  margin-bottom: 40px;
+.skills-section::before {
+  content: '';
+  position: absolute;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  height: 100%;
+  background-color: var(--secondary-bg-color);
+  z-index: -1;
+  top: 0;
 }
 
 .skills-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-  gap: 30px;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
 }
 
 .skill-category {
   background-color: var(--card-bg-color);
-  padding: 25px;
+  padding: 2rem;
   border-radius: var(--border-radius-medium);
   box-shadow: var(--shadow-medium);
   text-align: left;
@@ -729,61 +755,71 @@ section p {
 
 .skill-category h3 {
   font-size: 1.8rem;
-  color: var(--primary-color-dark);
-  margin-bottom: 20px;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
   border-bottom: 2px solid var(--primary-color-light);
-  padding-bottom: 10px;
+  padding-bottom: 0.8rem;
 }
 
 .skill-bars {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Space between skill bars */
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.skill-bar {
+  width: 100%;
 }
 
 .skill-info {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
-  font-weight: 500;
+  align-items: center;
+  margin-bottom: 0.8rem;
 }
 
-.skill-info span:first-child {
-  color: var(--text-color);
-  font-size: 1rem;
+.skill-info span {
+  font-size: 1.1rem;
+  color: var(--text-color-primary);
 }
 
 .skill-info span:last-child {
-  color: var(--primary-color);
-  font-size: 0.9rem;
+  color: var(--text-color-light);
 }
 
 .skill-progress {
   width: 100%;
-  background-color: var(--light-gray); /* Track of the progress bar */
-  border-radius: var(--border-radius-small);
-  height: 12px; /* Slightly thicker bar */
-  overflow: hidden; /* Ensures progress div stays within bounds */
+  height: 8px;
+  background-color: var(--light-gray);
+  border-radius: 4px;
+  overflow: hidden;
 }
 
-.skill-progress .progress {
+.progress {
   height: 100%;
-  background: linear-gradient(90deg, var(--primary-color-light), var(--primary-color)); /* Gradient for progress */
-  border-radius: var(--border-radius-small);
-  transition: width 0.8s ease-in-out;
-  display: block; /* Ensure it takes up space */
+  background: linear-gradient(to right, var(--primary-color), var(--accent-color-1));
+  border-radius: 4px;
+  transition: width 1s ease-in-out;
 }
 
-/* Responsive adjustments for skills */
 @media (max-width: 768px) {
-  .skills-section h2 {
-    font-size: 2rem;
+  .skills-container {
+    padding: 0 1rem;
+    gap: 1.5rem;
   }
+  
+  .skill-category {
+    padding: 1.5rem;
+  }
+
   .skill-category h3 {
     font-size: 1.5rem;
+    margin-bottom: 1.5rem;
   }
-  .skill-info span:first-child {
-    font-size: 0.95rem;
+
+  .skill-info span {
+    font-size: 1rem;
   }
 }
 
