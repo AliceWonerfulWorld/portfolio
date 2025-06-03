@@ -112,16 +112,6 @@ function App() {
             <div className="about-text">
               <h3>自己紹介</h3>
               <p>ここにあなたの自己紹介を書きます。経歴、興味、目標などを含めると良いでしょう。</p>
-              <div className="skills">
-                <h3>スキル</h3>
-                <div className="skill-tags">
-                  <span>HTML</span>
-                  <span>CSS</span>
-                  <span>JavaScript</span>
-                  <span>React</span>
-                  <span>Node.js</span>
-                </div>
-              </div>
             </div>
           </div>
         </section>

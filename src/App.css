@@ -212,14 +212,21 @@ section p {
 }
 
 .secondary-btn {
-  border: 2px solid var(--accent-color-1);
-  color: var(--accent-color-1);
-  background: transparent;
+  border: 2px solid var(--secondary-color);
+  color: var(--primary-color-dark);
+  background-color: var(--secondary-color);
+  font-weight: 700;
 }
 
 .primary-btn:hover, .secondary-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Adjusted shadow */
+}
+
+.secondary-btn:hover {
+  background-color: #FFFFFF;
+  border-color: #FFFFFF;
+  color: var(--primary-color);
 }
 
 .social-links {
