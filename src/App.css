@@ -787,7 +787,7 @@ section p {
 /* Skills Section Styles */
 .skills-section {
   background-color: var(--secondary-bg-color);
-  padding: 6rem 0;
+  padding: 6rem 1rem; /* 左右にパディングを追加 */
   width: 100%;
   max-width: none;
   position: relative;
@@ -816,8 +816,9 @@ section p {
   margin: 0 auto;
   padding: 0 2rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
+  box-sizing: border-box;
 }
 
 .skill-category {
@@ -880,12 +881,18 @@ section p {
 
 @media (max-width: 768px) {
   .skills-container {
-    padding: 0 1rem;
+    padding: 0 1.5rem;
     gap: 1.5rem;
+    grid-template-columns: 1fr; /* 1列に変更 */
+    max-width: calc(100% - 2rem); /* 幅を調整 */
+    margin: 0 auto;
   }
   
   .skill-category {
     padding: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
   }
 
   .skill-category h3 {
@@ -895,6 +902,30 @@ section p {
 
   .skill-info span {
     font-size: 1rem;
+  }
+    .skills-section {
+    padding: 4rem 0.5rem; /* 左右のパディングを減らす */
+  }
+}
+
+/* より小さい画面サイズ（スマートフォン）向けの追加調整 */
+@media (max-width: 480px) {
+  .skills-container {
+    padding: 0 1rem;
+    width: calc(100% - 1rem);
+    margin: 0 auto;
+  }
+  
+  .skill-category {
+    padding: 1.2rem;
+  }
+  
+  .skill-bars {
+    gap: 1.2rem;
+  }
+  
+  .skill-info span {
+    font-size: 0.9rem;
   }
 }
 
