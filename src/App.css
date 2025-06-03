@@ -14,11 +14,10 @@
   --background-light: #FFFFFF;
   --background-dark: #455A64; /* Blue Grey 700 (softer dark background) */
   --border-color: #CFD8DC; /* Blue Grey 100 */
-  --shadow-color: rgba(0, 0, 0, 0.06);
-
-  /* Updated font and existing spacing variables */
-  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  --font-secondary: 'Georgia', serif;
+  --shadow-color: rgba(0, 0, 0, 0.06);  /* Updated font and existing spacing variables */
+  --font-primary: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-secondary: 'Noto Serif JP', Georgia, serif;
+  --heading-font: 'Lato', sans-serif;
 
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
@@ -107,9 +106,17 @@ section h2 {
   font-size: 2.5rem;
   margin-bottom: 3rem;
   text-align: center;
-  font-weight: 800;
-  letter-spacing: -1px;
+  font-weight: 600; /* 少し軽くする */
+  letter-spacing: 0.02em; /* 文字間隔を少し追加 */
   position: relative;
+  font-family: var(--heading-font);
+  transition: all 0.3s ease;
+}
+
+section h2:hover {
+  transform: translateY(-2px);
+  color: var(--primary-color-dark);
+  letter-spacing: 0.04em; /* ホバー時に文字間隔を広げる */
 }
 
 section h2::after {
@@ -158,15 +165,15 @@ section p {
 }
 
 .hero-content h1 {
-  font-size: 4rem;
+  font-size: 3.8rem;
   margin-bottom: 1.5rem;
   animation: fadeInUp 1s ease;
-  font-weight: 800;
-  letter-spacing: -2px;
-  background: linear-gradient(to right, var(--secondary-color), var(--accent-color-1)); /* Adjusted gradient for title */
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  letter-spacing: normal;
+  color: var(--secondary-color);
+  font-family: var(--heading-font);
+  transition: all 0.3s ease;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .hero-subtitle {
@@ -279,7 +286,14 @@ section p {
   color: var(--primary-color);
   margin-top: 0;
   margin-bottom: 1.5rem;
-  font-weight: 700;
+  font-weight: 600;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.about-text h3:hover {
+  transform: translateX(5px);
+  color: var(--primary-color-dark);
 }
 
 .about-text p {
@@ -600,10 +614,16 @@ section p {
 }
 
 .project-card .project-title {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 15px;
   color: var(--primary-color);
+  font-family: var(--heading-font);
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .project-title {
+  color: var(--primary-color-dark);
 }
 
 .project-card .project-description {
@@ -835,6 +855,23 @@ section p {
   margin-bottom: 2rem;
   border-bottom: 2px solid var(--primary-color-light);
   padding-bottom: 0.8rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.skill-category h3::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-color-1);
+  transition: width 0.3s ease;
+}
+
+.skill-category h3:hover::after {
+  width: 100%;
 }
 
 .skill-bars {
@@ -1087,6 +1124,30 @@ section p {
   font-size: 1.5rem;
   color: var(--primary-color-dark);
   margin-bottom: 12px;
+  font-family: var(--heading-font);
+  transition: all 0.3s ease;
+  position: relative;
+  padding-bottom: 5px;
+  display: inline-block;
+}
+
+.news-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-color-1);
+  transition: width 0.3s ease;
+}
+
+.news-item:hover .news-title {
+  color: var(--primary-color);
+}
+
+.news-item:hover .news-title::after {
+  width: 100%;
 }
 
 .news-content {
