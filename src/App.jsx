@@ -181,6 +181,16 @@ function App() {
                     <img src={project.image} alt={project.title} className="project-image" />
                     <h3 className="project-title">{project.title}</h3>
                     <p className="project-description">{project.description}</p>
+                    
+                    <div className="project-tech">
+                      <h4>使用技術</h4>
+                      <div className="tech-tags">
+                        {project.tags.map((tag, tagIndex) => (
+                          <span key={tagIndex} className="tech-tag">{tag}</span>
+                        ))}
+                      </div>
+                    </div>
+                    
                     <div className="project-buttons">
                       <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link">View Project</a>
                       <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="project-link demo-link">Demo Video</a>
@@ -245,6 +255,48 @@ function App() {
                   </div>
                   <div className="skill-progress">
                     <div className="progress" style={{width: '80%'}}></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="skill-category">
+              <h3>バックエンド</h3>
+              <div className="skill-bars">
+                <div className="skill-bar">
+                  <div className="skill-info">
+                    <span>Node.js</span>
+                    <span>85%</span>
+                  </div>
+                  <div className="skill-progress">
+                    <div className="progress" style={{width: '85%'}}></div>
+                  </div>
+                </div>
+                <div className="skill-bar">
+                  <div className="skill-info">
+                    <span>Express</span>
+                    <span>80%</span>
+                  </div>
+                  <div className="skill-progress">
+                    <div className="progress" style={{width: '80%'}}></div>
+                  </div>
+                </div>
+                <div className="skill-bar">
+                  <div className="skill-info">
+                    <span>MongoDB</span>
+                    <span>75%</span>
+                  </div>
+                  <div className="skill-progress">
+                    <div className="progress" style={{width: '75%'}}></div>
+                  </div>
+                </div>
+                <div className="skill-bar">
+                  <div className="skill-info">
+                    <span>SQL</span>
+                    <span>70%</span>
+                  </div>
+                  <div className="skill-progress">
+                    <div className="progress" style={{width: '70%'}}></div>
                   </div>
                 </div>
               </div>
