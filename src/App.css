@@ -1,28 +1,4 @@
-@media (max-width: 768px) {
-  .timeline {
-    max-width: 100%;
-    padding-left: 0;
-  }
-  .timeline::before {
-    left: 8px;
-    transform: none;
-  }
-  .timeline-dot {
-    left: 0;
-    transform: none;
-  }
-  .timeline-item .timeline-content {
-    width: calc(100% - 28px);
-    margin-left: 28px;
-    text-align: left;
-  }
-  .timeline-item .timeline-content::before {
-    left: -8px;
-    border-width: 8px 8px 8px 0;
-    border-color: transparent var(--card-bg-color) transparent transparent;
-    right: auto;
-  }
-}
+/* このメディアクエリは992pxのメディアクエリと重複しており、削除しました */
 /* 全体のスタイル */
 :root {
   /* New Lighter/Paler Formal Palette */
@@ -386,6 +362,7 @@ section p {
   width: 100%;
   max-width: none;
   position: relative;
+  box-sizing: border-box; /* 追加：境界とパディングを幅に含める */
 }
 
 .experience-section .timeline {
@@ -417,6 +394,8 @@ section p {
 .timeline-item {
   position: relative;
   margin-bottom: 5rem;
+  box-sizing: border-box; /* 追加：境界とパディングを幅に含める */
+  width: 100%; /* 追加：幅を100%に設定 */
 }
 
 .timeline-item:last-child {
@@ -444,7 +423,8 @@ section p {
   position: relative;
   border: 1px solid var(--card-border-color);
   padding: 20px; 
-  width: calc(50% - 15px); /* Adjusted: Was calc(50% - 25px) */
+  width: calc(50% - 15px);
+  box-sizing: border-box; /* 追加：境界とパディングを幅に含める */
 }
 
 .timeline-content h3 {
@@ -864,24 +844,25 @@ section p {
   }
 
   .timeline::before {
-    left: 20px; /* Adjust line position for mobile */
-    transform: translateX(0);
+    left: 8px; /* Adjust line position for mobile */
+    transform: none;
   }
   .timeline-item:nth-child(odd) .timeline-content,
   .timeline-item:nth-child(even) .timeline-content {
-    width: calc(100% - 65px); /* Adjust content width */
-    margin-left: 65px; /* Align content to the right of the line */
+    width: calc(100% - 28px); /* Consistent width for mobile */
+    margin-left: 28px; /* Consistent margin for mobile */
     text-align: left;
   }
   .timeline-dot {
-    left: 20px; /* Align dot with the line */
-    transform: translateX(-50%); /* Center dot on the line */
+    left: 0; /* Consistent dot position */
+    transform: none;
   }
   .timeline-item:nth-child(odd) .timeline-content::before,
   .timeline-item:nth-child(even) .timeline-content::before {
-    left: -10px; /* Arrow position */
-    border-width: 10px 10px 10px 0;
-    border-color: transparent var(--background-light) transparent transparent;
+    left: -8px; /* Consistent arrow position */
+    border-width: 8px 8px 8px 0;
+    border-color: transparent var(--card-bg-color) transparent transparent;
+    right: auto;
   }
 
   .contact-content {
@@ -956,25 +937,7 @@ section p {
     width: 100%;
     max-width: 250px;
   }
-  .timeline::before {
-    left: 8px;
-    transform: none;
-  }
-  .timeline-dot {
-    left: 0;
-    transform: none;
-  }
-  .timeline-item .timeline-content {
-    width: calc(100% - 28px);
-    margin-left: 28px;
-    text-align: left;
-  }
-  .timeline-item .timeline-content::before {
-    left: -8px;
-    border-width: 8px 8px 8px 0;
-    border-color: transparent var(--card-bg-color) transparent transparent;
-    right: auto;
-  }
+  /* タイムラインのスタイルは992pxのメディアクエリで既に定義されているため削除 */
 }
 
 /* News Section Styles */
