@@ -181,7 +181,11 @@ function App() {
                     <img src={project.image} alt={project.title} className="project-image" />
                     <h3 className="project-title">{project.title}</h3>
                     <p className="project-description">{project.description}</p>
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link">View Project</a>
+                    <div className="project-buttons">
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link">View Project</a>
+                      <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="project-link demo-link">Demo Video</a>
+                      <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="project-link github-link">GitHub</a>
+                    </div>
                   </div>
                 ))}
               </div>

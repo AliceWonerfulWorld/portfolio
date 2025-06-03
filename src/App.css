@@ -586,7 +586,7 @@ section p {
   border-radius: var(--border-radius-large);
   box-shadow: var(--shadow-medium);
   margin: 0;
-  min-height: 420px;
+  min-height: 460px; /* Increased height to accommodate new buttons */
   border: 1px solid var(--card-border-color);
 }
 
@@ -615,8 +615,15 @@ section p {
   color: var(--text-color);
 }
 
+.project-card .project-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .project-card .project-link {
-  padding: 12px 28px;
+  padding: 10px 15px;
   background-color: var(--primary-color);
   color: var(--button-text-color, white);
   text-decoration: none;
@@ -624,11 +631,28 @@ section p {
   transition: background-color 0.3s ease, transform 0.2s ease;
   font-weight: 500;
   display: inline-block;
+  font-size: 0.9rem;
+}
+
+.project-card .project-link.demo-link {
+  background-color: var(--accent-color-1);
+}
+
+.project-card .project-link.github-link {
+  background-color: var(--accent-color-2);
 }
 
 .project-card .project-link:hover {
   background-color: var(--primary-color-dark);
   transform: translateY(-2px);
+}
+
+.project-card .project-link.demo-link:hover {
+  background-color: #8a7369; /* Darker shade of accent-color-1 */
+}
+
+.project-card .project-link.github-link:hover {
+  background-color: #6aad6d; /* Darker shade of accent-color-2 */
 }
 
 /* ============================================= */
@@ -1107,9 +1131,8 @@ section p {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10;
-  width: 70px;
-  height: 70px;
+  z-index: 10;  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1118,17 +1141,17 @@ section p {
 }
 
 .projects-carousel .carousel-button i {
-  font-size: 3rem;
+  font-size: 2.2rem;
   color: var(--primary-color);
   transition: transform 0.3s ease;
 }
 
 .projects-carousel .carousel-button.prev {
-  left: -35px;
+  left: -25px;
 }
 
 .projects-carousel .carousel-button.next {
-  right: -35px;
+  right: -25px;
 }
 
 .projects-carousel .carousel-button:hover {
