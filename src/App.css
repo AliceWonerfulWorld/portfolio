@@ -379,23 +379,26 @@ section p {
   max-width: 900px;
   margin: 0 auto;
   padding: 2rem 0;
+  box-sizing: border-box; /* box-sizingを追加 */
 }
 
 .timeline::before {
   content: '';
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 50%; /* デスクトップでは中央 */
+  transform: translateX(-50%); /* 中央揃え */
   width: 4px;
   height: 100%;
   background: linear-gradient(to bottom, var(--primary-color) 0%, var(--accent-color-2) 70%, transparent 100%); /* Adjusted gradient */
+  z-index: 1; /* 背景よりは前、他の要素より後ろ */
 }
 
 .timeline-item {
   position: relative;
-  margin-bottom: 5rem;
-  box-sizing: border-box; /* 追加：境界とパディングを幅に含める */
-  width: 100%; /* 追加：幅を100%に設定 */
+  width: 100%;
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: flex-start;
 }
 
 .timeline-item:last-child {
@@ -404,15 +407,16 @@ section p {
 
 .timeline-dot {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 16px;
-  height: 16px;
+  left: 50%; /* デスクトップでは中央 */
+  transform: translateX(-50%); /* 中央揃え */
+  width: 10px; /* サイズを調整 */
+  height: 10px;
   background-color: var(--primary-color);
   border-radius: 50%;
-  z-index: 1;
-  top: 25px; /* Match ::before top, or adjust both for vertical centering */
-  border: 3px solid var(--secondary-bg-color); 
+  z-index: 3; /* 他の要素より前面に表示 */
+  top: 25px; /* 縦位置 */
+  border: 2px solid var(--secondary-bg-color); 
+  box-sizing: content-box; /* ボーダーをサイズに含めない */
 }
 
 .timeline-content {
@@ -423,8 +427,51 @@ section p {
   position: relative;
   border: 1px solid var(--card-border-color);
   padding: 20px; 
-  width: calc(50% - 15px);
-  box-sizing: border-box; /* 追加：境界とパディングを幅に含める */
+  width: calc(50% - 15px);  .timeline-item {
+    position: relative;
+    width: 100%;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .timeline-item .timeline-content {
+    width: calc(50% - 30px); /* カードの幅を50%から余白分を引いた値に */
+    background: var(--card-bg-color);
+    border-radius: var(--border-radius-md);
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    position: relative;
+  }
+  
+  /* 偶数番目のカードのスタイル */
+  .timeline-item:nth-child(even) {
+    justify-content: flex-end;
+  }
+  
+  /* 奇数番目のカードのスタイル */
+  .timeline-item:nth-child(odd) .timeline-content {
+    margin-left: 30px; /* 左側のカードのマージン */
+  }
+  
+  /* 偶数番目のカードのスタイル */
+  .timeline-item:nth-child(even) .timeline-content {
+    margin-right: 30px; /* 右側のカードのマージン */
+  }
+  
+  /* 矢印の位置調整 */
+  .timeline-item:nth-child(odd) .timeline-content::before {
+    left: -8px;
+    border-width: 8px 8px 8px 0;
+    border-color: transparent var(--card-bg-color) transparent transparent;
+  }
+  
+  .timeline-item:nth-child(even) .timeline-content::before {
+    right: -8px;
+    border-width: 8px 0 8px 8px;
+    border-color: transparent transparent transparent var(--card-bg-color);
+  }
+  box-sizing: border-box; /* 境界とパディングを幅に含める */
 }
 
 .timeline-content h3 {
@@ -465,20 +512,21 @@ section p {
 .timeline-content::before {
   content: '';
   position: absolute;
-  top: 25px; /* Adjusted for potentially better vertical alignment with dot */
+  top: 25px; /* ドットと同じ高さに合わせる */
   width: 0;
   height: 0;
   border-style: solid;
+  z-index: 1; /* 矢印を確実に表示する */
 }
 
 .timeline-item:nth-child(odd) .timeline-content::before {
-  left: -10px; /* Width of the arrow */
+  left: -10px; /* 矢印の位置 */
   border-width: 10px 10px 10px 0;
   border-color: transparent var(--card-bg-color) transparent transparent;
 }
 
 .timeline-item:nth-child(even) .timeline-content::before {
-  right: -10px; /* Width of the arrow */
+  right: -10px; /* 矢印の位置 */
   border-width: 10px 0 10px 10px;
   border-color: transparent transparent transparent var(--card-bg-color);
 }
@@ -841,29 +889,7 @@ section p {
   }
   .about-image img {
     width: 300px;
-  }
-
-  .timeline::before {
-    left: 8px; /* Adjust line position for mobile */
-    transform: none;
-  }
-  .timeline-item:nth-child(odd) .timeline-content,
-  .timeline-item:nth-child(even) .timeline-content {
-    width: calc(100% - 28px); /* Consistent width for mobile */
-    margin-left: 28px; /* Consistent margin for mobile */
-    text-align: left;
-  }
-  .timeline-dot {
-    left: 0; /* Consistent dot position */
-    transform: none;
-  }
-  .timeline-item:nth-child(odd) .timeline-content::before,
-  .timeline-item:nth-child(even) .timeline-content::before {
-    left: -8px; /* Consistent arrow position */
-    border-width: 8px 8px 8px 0;
-    border-color: transparent var(--card-bg-color) transparent transparent;
-    right: auto;
-  }
+  }  /* このセクションの設定は下部の新しいメディアクエリで上書きされます */
 
   .contact-content {
     grid-template-columns: 1fr; /* Stack on smaller screens */
@@ -937,7 +963,6 @@ section p {
     width: 100%;
     max-width: 250px;
   }
-  /* タイムラインのスタイルは992pxのメディアクエリで既に定義されているため削除 */
 }
 
 /* News Section Styles */
@@ -1141,5 +1166,54 @@ html, body {
 
 body {
   position: relative;
+}
+
+/* タイムラインモバイル表示の最終調整 - この新しいメディアクエリで最終的な修正を行う */
+@media (max-width: 992px) {
+  /* タイムライン全体の調整 */
+  .timeline {
+    padding-left: 0; /* パディングをリセット */
+  }
+  
+  /* 線の位置を修正 */
+  .timeline::before {
+    left: 10px; /* 線の位置を左端に近づける */
+    transform: none; /* 中央揃えを削除 */
+    width: 5px; /* 線を細く */
+  }
+  
+  /* ドットの位置を線と完全に一致させる */
+  .timeline-dot {
+    left: -28px; /* 線と同じ位置に配置 */
+    transform: none; /* 変換を削除 */
+    margin-top: 0; /* マージンを削除 */
+    top: 25px; /* 縦位置 */
+    width: 15px; /* サイズを小さく */
+    height: 15px;
+    border: 1px solid var(--secondary-bg-color);
+  }
+  
+  /* カードの位置を調整して線とドットに近づける */
+  .timeline-item:nth-child(odd) .timeline-content,
+  .timeline-item:nth-child(even) .timeline-content {
+    margin-left: 0px; /* 線との距離を縮める */
+    width: calc(100% - 20px); /* 幅を調整 */
+    text-align: left;
+  }
+  
+  /* 矢印の位置を調整 */
+  .timeline-item:nth-child(odd) .timeline-content::before,
+  .timeline-item:nth-child(even) .timeline-content::before {
+    left: -8px; /* 矢印の位置 */
+    border-width: 8px 8px 8px 0;
+    border-color: transparent var(--card-bg-color) transparent transparent;
+    right: auto;
+  }
+  
+  /* タイムラインアイテムの配置を改善 */
+  .timeline-item {
+    align-items: flex-start;
+    padding-left: 0;
+  }
 }
 
