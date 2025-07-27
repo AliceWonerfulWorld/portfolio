@@ -6,8 +6,8 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-section">
-          <h3>My Portfolio</h3>
-          <p>ポートフォリオサイトへようこそ。私の作品やスキルをご覧ください。</p>
+          <h3>Alice's Portfolio</h3>
+          <p>ポートフォリオサイトへようこそ。<br/> ゆっくりしていってね。</p>
         </div>
         
         <div className="footer-section">
@@ -35,7 +35,7 @@ const Footer = () => {
       </div>
       
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} My Portfolio. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Alice’s Portfolio. All rights reserved.</p>
       </div>
     </footer>
   );

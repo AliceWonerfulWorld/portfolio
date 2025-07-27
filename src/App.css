@@ -55,7 +55,7 @@
   /* Shadows & Borders */
   --shadow-light: 0 2px 4px rgba(0,0,0,0.05);
   --shadow-medium: 0 4px 8px rgba(0,0,0,0.1);
-  --shadow-large: 0 8px 16px rgba(0,0,0,0.1);
+  --shadow-large: 0 8px 16px rgba(0, 0, 0, 0.1);
 
   --border-radius-small: 4px;
   --border-radius-medium: 8px;
@@ -1595,5 +1595,256 @@ body {
   .project-card .project-image {
     height: 250px;
   }
+}
+
+/* Show More Button Styles */
+.news-show-more {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px 0;
+}
+
+.show-more-btn {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color-1) 100%);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  min-width: 140px;
+}
+
+.show-more-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.show-more-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, var(--primary-color-dark) 0%, var(--accent-color-2) 100%);
+}
+
+.show-more-btn:hover::before {
+  left: 100%;
+}
+
+.show-more-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* News Items Animation */
+.news-item {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.news-item:nth-child(1) { animation-delay: 0.1s; }
+.news-item:nth-child(2) { animation-delay: 0.2s; }
+.news-item:nth-child(3) { animation-delay: 0.3s; }
+.news-item:nth-child(4) { animation-delay: 0.4s; }
+.news-item:nth-child(5) { animation-delay: 0.5s; }
+.news-item:nth-child(6) { animation-delay: 0.6s; }
+.news-item:nth-child(7) { animation-delay: 0.7s; }
+.news-item:nth-child(8) { animation-delay: 0.8s; }
+
+/* Smooth transition for news container */
+.news-container {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Button loading state */
+.show-more-btn.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.show-more-btn.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments for show more button */
+@media (max-width: 768px) {
+  .show-more-btn {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    min-width: 120px;
+  }
+  
+  .news-show-more {
+    margin-top: 30px;
+    padding: 15px 0;
+  }
+}
+
+/* Simplified News Section Transitions */
+.news-section {
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.news-container {
+  transition: all 0.3s ease;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.news-item {
+  background-color: var(--card-bg-color);
+  padding: 25px;
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--shadow-medium);
+  border: 1px solid var(--card-border-color);
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.news-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-large);
+}
+
+/* Smooth height transition for container */
+.news-container {
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+/* Remove complex animations that might cause issues */
+.news-item.expanding,
+.news-item.collapsing,
+.news-container.expanding,
+.news-container.collapsing {
+  animation: none;
+}
+
+/* Enhanced News Section with Fade-in Width Animation */
+.news-section {
+  background-color: var(--secondary-bg-color);
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.news-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Fade-in animation for new items */
+.news-item {
+  background-color: var(--card-bg-color);
+  padding: 25px;
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--shadow-medium);
+  border: 1px solid var(--card-border-color);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Special animation for items that appear when "Show More" is clicked */
+.news-item.new-item {
+  animation: fadeInScale 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(10px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Enhanced fadeInUp animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Container animation when expanding */
+.news-container.expanding {
+  animation: containerExpand 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes containerExpand {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Smooth grid transition */
+.news-container {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.news-item:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: var(--shadow-large);
 }
 

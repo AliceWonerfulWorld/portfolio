@@ -13,11 +13,13 @@ import listen39Image from './assets/Listen39.png';
 
 function App() {
   const [currentProject, setCurrentProject] = useState(0);
+  const [showAllNews, setShowAllNews] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const projects = [
     {
       title: "クイズマスター",
-      description: "4択のシンプルなクイズアプリです。昔学校の授業で作ったものを自分なりにブラッシュアップしました。",
+      description: "4択のシンプルなクイズアプリです。\n昔学校の授業で作ったものを自分なりにブラッシュアップしました。",
       titleImage: quizmasterImage,
       contentImage: "https://via.placeholder.com/600x400?text=Quiz+App+Screenshot",
       tags: ["Flutter"],
@@ -27,7 +29,7 @@ function App() {
     },
     {
       title: "ニセッチ2",
-      description: "ハックツハッカソン ギガノトカップにて作成しました。今話題のあのゲーム機っぽいものを作ってみました。Joy-conを使って遊べるゲームも入っています。",
+      description: "ハックツハッカソン ギガノトカップにて作成しました。\n今話題のあのゲーム機っぽいものを作ってみました。Joy-conを使って遊べるゲームも入っています。",
       titleImage: nisettiImage,
       contentImage: "https://via.placeholder.com/600x400?text=Project+Content+2",
       tags: ["React", "GCP", "JavaScript", "Terraform"],
@@ -38,7 +40,7 @@ function App() {
     },
     {
       title: "寝過ごしパニック！",
-      description: "部内ハッカソンにて作成しました。「Flutter,React,JavaScript,LineMessagingAPIを必ず使用する」という技術縛りの中開発したプロダクトだったので非常に開発が大変でした。部内ハッカソンにて最優秀賞受賞 2025/07/05開催 技育博 vol3 にて展示",
+      description: "部内ハッカソンにて作成しました。\n「Flutter,React,JavaScript,LineMessagingAPIを必ず使用する」という技術縛りの中開発したプロダクトだったので非常に開発が大変でした。\n部内ハッカソン 最優秀賞受賞 \n2025/07/05開催 技育博 vol3 展示",
       titleImage: nesupaniImage,
       contentImage: "https://via.placeholder.com/600x400?text=Nesupani+App+Screenshot",
       tags: ["Flutter", "Firebase", "React", "JavaScript", "LineMessagingAPI", "Unity", "MediaPipe"],
@@ -49,7 +51,7 @@ function App() {
     },
     {
       title: "アニ名刺",
-      description: "2025.2.1～2.2の技育CAMPハッカソン 2024年度 Vol.21にて製作しました。初対面の人と会話をするときに会話のネタがない.....そんなときに役立つようなアプリを目指して作りました。",
+      description: "2025.2.1～2.2の技育CAMPハッカソン 2024年度 Vol.21にて製作しました。\n初対面の人と会話をするときに会話のネタがない.....そんなときに役立つようなアプリを目指して作りました。\nあなただけのアニ名刺を作って、QRコードで交換しよう！",
       titleImage: animeishiImage,
       contentImage: "https://via.placeholder.com/600x400?text=Project+Content+4",
       tags: ["Flutter", "Firebase"],
@@ -59,7 +61,7 @@ function App() {
     },
     {
       title: "SIKAPOKE(Sikaku mounting Card Game Pocket)",
-      description: "2025.3.26～3.27 技育CAMPハッカソン 2025年度 vol1にて制作しました。今話題のあのカードゲームをオマージュして作ってみました。パックを引いて、カードを5枚選んで自分だけのデッキを作ろう！ 努力賞 受賞",
+      description: "2025.3.26～3.27 技育CAMPハッカソン 2025年度 vol1にて制作しました。\n今話題のあのカードゲームをオマージュして作ってみました。\nパックを引いて、カードを5枚選んで自分だけのデッキを作ろう！ \n技育CAMPハッカソン 2025年度 vol1 努力賞 受賞",
       titleImage: sikapokeImage,
       contentImage: "https://via.placeholder.com/600x400?text=Project+Content+4",
       tags: ["Flutter", "Firebase"],
@@ -69,7 +71,7 @@ function App() {
     },
     {
       title: "政党まとめサイト",
-      description: "2023年9月 カラビナテクノロジー株式会社の2weeksインターンシップに参加した際に作成しました。Web制作には、NotionとStudioという2つのノーコードツールを使用しました",
+      description: "2023年9月 カラビナテクノロジー株式会社の2weeksインターンシップに参加した際に作成しました。\nWeb制作には、NotionとStudioという2つのノーコードツールを使用しました",
       titleImage: seitouImage,
       contentImage: "https://via.placeholder.com/600x400?text=Project+Content+4",
       tags: ["Notion", "Studio"],
@@ -77,7 +79,7 @@ function App() {
     },
     {
       title: "Listen With 39",
-      description: "初音ミク「マジカルミライ 2025」プログラミング・コンテスト 応募作品 曲に合わせてミクが動くMVを作成しました。",
+      description: "初音ミク「マジカルミライ 2025」プログラミング・コンテスト 応募作品 \n曲に合わせてミクが動くMVを作成しました。\n使用した楽曲 「ストリートライト」\nhttps://www.youtube.com/watch?v=NPOhKU5VTrQ",
       titleImage: listen39Image,
       contentImage: "https://via.placeholder.com/600x400?text=Project+Content+4",
       tags: ["Typescript", "Babylon.js","Blender"],
@@ -89,26 +91,72 @@ function App() {
 
   const numProjects = projects.length;
 
+  // URLを自動検出してリンクに変換する関数
+  const formatDescription = (description) => {
+    // URLを検出してリンクに変換
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const formattedText = description.replace(urlRegex, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+    // 改行を<br>タグに変換
+    return formattedText.replace(/\n/g, '<br />');
+  };
+
+  // News用のテキストフォーマット関数
+  const formatNewsText = (text) => {
+    // URLを検出してリンクに変換
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const formattedText = text.replace(urlRegex, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+    // 改行を<br>タグに変換
+    return formattedText.replace(/\n/g, '<br />');
+  };
+
   // Sample News Items
   const newsItems = [
     {
       id: 1,
-      date: "2025年5月28日",
-      title: "ハッカソン「CodeWave 2025」に参加しました！",
-      content: "先日開催されたCodeWave 2025ハッカソンにチームで参加し、革新的なWebアプリケーションのプロトタイプを開発しました。惜しくも入賞は逃しましたが、多くの学びと素晴らしい経験を得ることができました。",
+      date: "2025年7月26日",
+      title: "福岡工業大学 \nオープンキャンパス 参加",
+      content: "福岡工業大学のオープンキャンパスにスタッフとして参加しました。\nB棟5階の個別相談ブースにて、短大への入学、大学への編入相談を担当しました。\n多くの方に「とても参考になった」、「ぜひここの短大を受験したい」との声をいただき、非常に嬉しかったです。",
       link: "#" // Optional link to a blog post or more details
     },
     {
       id: 2,
-      date: "2025年4月15日",
-      title: "新しいスキルとしてGraphQLの学習を開始",
-      content: "現代的なAPI開発のトレンドを追い、GraphQLの学習を始めました。効率的なデータ取得と柔軟なクエリに感銘を受けています。今後のプロジェクトで活用していく予定です。",
-      link: "#"
+      date: "2025年7月25日",
+      title: "ウイングアーク1st株式会社さんのLT会に参加",
+      content: "「生成AIについて語ろう」ということで、テーマは生成AIについてでした。\n生成AIを使ってのHPの制作、モデルごとの比較、AIを使うときの心構えなど、どのLTも内容が濃く、有意義な時間を過ごせました。\n(特に同じプロンプトを投げてモデルごとに比較するやつが面白かったです)",
+      link: "https://wingarc1st-techevent.connpass.com/event/358566/"
     },
     {
       id: 3,
-      date: "2025年3月1日",
-      title: "ポートフォリオサイトをリニューアル！",
+      date: "2025年7月12日",
+      title: "チャレキャラ\nアイデア発表会 参加",
+      content: "天神で開催されたチャレキャラのアイデア発表会に参加してきました。\n私たちは「V-chat」という互いにVRアバターの姿で会話ができるコミュニケーションアプリを発表しました。\n発表後、企業の方からフィードバックを頂き、今後の開発において非常に参考になりました。",
+      link: "https://www.canva.com/design/DAGsfj57PDY/6TeQMZyRVilRWeCg9VSutg/edit"
+    },
+    {
+      id: 4,
+      date: "2025年7月8日",
+      title: "初音ミク「マジカルミライ 2025」プログラミング・コンテスト 作品応募",
+      content: "締め切りギリギリまで開発してました。\n4月から3か月間の開発でしたが、チームで一丸となってなんとか作品を作り上げることが出来ました。\nコンテストの入選発表は8月9日に発表なので是非お楽しみに～",
+      link: "https://magicalmirai.com/2025/procon/"
+    },
+    {
+      id: 5,
+      date: "2025年7月5日",
+      title: "技育博 vol3 参加",
+      content: "このポートフォリオサイトを、よりモダンで洗練されたデザインにアップデートしました。新しい技術スタックも導入し、パフォーマンスも向上しています。ぜひご覧ください。",
+      link: "#"
+    },
+    {
+      id: 6,
+      date: "2025年7月12日",
+      title: "チャレキャラ アイデア発表 & 21歳の誕生日",
+      content: "このポートフォリオサイトを、よりモダンで洗練されたデザインにアップデートしました。新しい技術スタックも導入し、パフォーマンスも向上しています。ぜひご覧ください。",
+      link: "#"
+    },
+    {
+      id: 7,
+      date: "2025年7月12日",
+      title: "チャレキャラ アイデア発表 & 21歳の誕生日",
       content: "このポートフォリオサイトを、よりモダンで洗練されたデザインにアップデートしました。新しい技術スタックも導入し、パフォーマンスも向上しています。ぜひご覧ください。",
       link: "#"
     }
@@ -122,13 +170,25 @@ function App() {
     setCurrentProject((prev) => (prev - 1 + projects.length) % projects.length);
   };
 
+  // News表示用のデータを取得
+  const displayedNews = showAllNews ? newsItems : newsItems.slice(0, 6);
+
+  const handleShowMoreClick = () => {
+    setIsLoading(true);
+    
+    setTimeout(() => {
+      setShowAllNews(!showAllNews);
+      setIsLoading(false);
+    }, 200);
+  };
+
   return (
     <div className="App">
       <Header />
       <main>
         <section id="hero" className="hero-section">
           <div className="hero-content">
-            <h1>My Portfolio</h1>
+            <h1>Alice’s Portfolio</h1>
             <p className="hero-roman">佐野 優人</p>
             <p className="hero-subtitle">福岡工業大学 情報工学部 情報工学科 3年 <br/> 情報技術研究部 所属</p>
             <p className="hero-catch">好奇心と技術で未来を創る</p>
@@ -277,6 +337,8 @@ function App() {
                     こんにちは！佐野 優人と申します。<br />
                     福岡工業大学 情報工学部 情報工学科の3年生です！<br/>
                     現在、27卒としてエンジニア職を目指して就職活動中です。<br/>
+                    大学では、情報技術研究部というサークルに所属しており、みんなからAlice(アリス)と呼ばれています。<br/>
+                    (不思議の国のアリスが好きなので、アリスです)<br/>
                     個人・チーム問わずアプリやゲームの開発に取り組んでおり、特にUI/UX周りの開発が得意です。<br/>
                     新しい技術の学習も楽しんでおり、常に成長し続けることを心がけています。<br/>
                     将来は、技術を通じて人と人のつながりを生み出すエンジニアになりたいです！！ <br/>
@@ -354,7 +416,7 @@ function App() {
                   >
                     <img src={project.titleImage} alt={project.title} className="project-image" />
                     <h3 className="project-title">{project.title}</h3>
-                    <p className="project-description">{project.description}</p>
+                    <p className="project-description" style={{ whiteSpace: 'pre-line' }} dangerouslySetInnerHTML={{ __html: formatDescription(project.description) }}></p>
                     
                     <div className="project-tech">
                       <h4>使用技術</h4>
@@ -391,19 +453,36 @@ function App() {
         <section id="news" className="news-section">
           <h2>News</h2>
           <div className="news-container">
-            {newsItems.map((item) => (
-              <div key={item.id} className="news-item">
+            {displayedNews.map((item, index) => (
+              <div 
+                key={item.id} 
+                className="news-item"
+                style={{ 
+                  animationDelay: `${(index + 1) * 0.1}s`
+                }}
+              >
                 <p className="news-date">{item.date}</p>
-                <h3 className="news-title">{item.title}</h3>
-                <p className="news-content">{item.content}</p>
+                <h3 className="news-title" dangerouslySetInnerHTML={{ __html: formatNewsText(item.title) }}></h3>
+                <p className="news-content" dangerouslySetInnerHTML={{ __html: formatNewsText(item.content) }}></p>
                 {item.link && item.link !== "#" && (
                   <a href={item.link} target="_blank" rel="noopener noreferrer" className="news-link">
-                    続きを読む <i className="fas fa-arrow-right"></i>
+                    詳細を見る <i className="fas fa-arrow-right"></i>
                   </a>
                 )}
               </div>
             ))}
           </div>
+          {newsItems.length > 6 && (
+            <div className="news-show-more">
+              <button 
+                className={`show-more-btn ${isLoading ? 'loading' : ''}`}
+                onClick={handleShowMoreClick}
+                disabled={isLoading}
+              >
+                {showAllNews ? 'Show Less' : 'Show More'}
+              </button>
+            </div>
+          )}
         </section>
         {/* END News Section */}
 
@@ -418,15 +497,11 @@ function App() {
               <div className="contact-details">
                 <div className="contact-item">
                   <i className="fas fa-envelope"></i>
-                  <p>email@example.com</p>
+                  <p>chebukinowashiwashi@gmail.com</p>
                 </div>
                 <div className="contact-item">
                   <i className="fab fa-github"></i>
-                  <p>github.com/username</p>
-                </div>
-                <div className="contact-item">
-                  <i className="fab fa-linkedin"></i>
-                  <p>linkedin.com/in/username</p>
+                  <p>https://github.com/AliceWonerfulWorld</p>
                 </div>
               </div>
             </div>
