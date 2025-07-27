@@ -53,6 +53,37 @@
   color: var(--text-color-light);
 }
 
+.footer-contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.footer-contact-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.05rem;
+}
+.footer-contact-list i {
+  color: var(--accent-color-1);
+  font-size: 1.3rem;
+  min-width: 22px;
+  text-align: center;
+}
+.footer-contact-list a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 500;
+}
+.footer-contact-list a:hover {
+  color: var(--accent-color-2);
+  text-decoration: underline;
+}
+
 /* Responsive adjustments for Footer */
 @media (max-width: 768px) {
   .footer-content {

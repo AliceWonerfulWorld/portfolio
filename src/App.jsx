@@ -2,40 +2,52 @@ import React, { useState } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import './App.css';
+import nesupaniImage from './assets/nesupani.png';
+import quizmasterImage from './assets/quizmaster.png';
+import aliceMarkImage from './assets/AliceMark.png';
 
 function App() {
   const [currentProject, setCurrentProject] = useState(0);
 
   const projects = [
     {
-      title: "サンプルプロジェクト 1",
-      description: "これはサンプルプロジェクトの説明です。ここにプロジェクトの概要が入ります。このプロジェクトはReactとNode.jsを使用して開発されました。",
-      image: "https://via.placeholder.com/600x400?text=Project+Image+1",
-      tags: ["React", "Node.js", "Express"],
+      title: "クイズマスター",
+      description: "4択のシンプルなクイズアプリです。昔学校の授業で作ったものを自分なりにブラッシュアップしました。",
+      titleImage: quizmasterImage,
+      contentImage: "https://via.placeholder.com/600x400?text=Quiz+App+Screenshot",
+      tags: ["Flutter"],
+      link: "https://quizmasters-7aecd.web.app/",
       demoLink: "#",
-      githubLink: "#"
+      githubLink: "https://github.com/AliceWonerfulWorld/quizappFlutter"
     },
     {
-      title: "サンプルプロジェクト 2",
-      description: "これはサンプルプロジェクトの説明です。最新のWeb技術を駆使して作られた、インタラクティブなアプリケーションです。",
-      image: "https://via.placeholder.com/600x400?text=Project+Image+2",
-      tags: ["JavaScript", "HTML5", "CSS3", "API"],
+      title: "ニセッチ2",
+      description: "ハックツハッカソン ギガノトカップにて作成しました。",
+      titleImage: "https://via.placeholder.com/600x400?text=Project+Title+2",
+      contentImage: "https://via.placeholder.com/600x400?text=Project+Content+2",
+      tags: ["React", "GCP", "JavaScript", "Terraform"],
+      link: "https://giganoto-front.pages.dev/",
       demoLink: "#",
-      githubLink: "#"
+      githubLink: "https://github.com/Yanai1005/giganoto-front",
+      detailsLink: "https://topaz.dev/projects/d561c6a5ba98b6cf9f78"
     },
     {
-      title: "サンプルプロジェクト 3",
-      description: "このプロジェクトは、ユーザー中心の設計を重視し、直感的なUI/UXを提供することを目的としています。",
-      image: "https://via.placeholder.com/600x400?text=Project+Image+3",
-      tags: ["Vue.js", "Firebase", "PWA"],
+      title: "寝過ごしパニック！",
+      description: "部内ハッカソンにて作成しました。「Flutter,React,JavaScript,LineMessagingAPIを必ず使用する」という技術縛りの中開発したプロダクトだったので非常に開発が大変でした。",
+      titleImage: nesupaniImage,
+      contentImage: "https://via.placeholder.com/600x400?text=Nesupani+App+Screenshot",
+      tags: ["Flutter", "Firebase", "React", "JavaScript", "LineMessagingAPI", "Unity", "MediaPipe"],
+      link: "https://nesupani-react.vercel.app/",
       demoLink: "#",
-      githubLink: "#"
+      githubLink: "https://github.com/RiTa-23/NesugoshiPanic",
+      detailsLink: "https://topaz.dev/projects/ca07b33b0dfd1afac98b"
     },
     {
-      title: "サンプルプロジェクト 4",
+      title: "アニ名刺",
       description: "データ分析と視覚化に焦点を当てたプロジェクトです。D3.jsなどのライブラリを活用しています。",
-      image: "https://via.placeholder.com/600x400?text=Project+Image+4",
-      tags: ["Python", "Flask", "D3.js"],
+      titleImage: "https://via.placeholder.com/600x400?text=Project+Title+4",
+      contentImage: "https://via.placeholder.com/600x400?text=Project+Content+4",
+      tags: ["Flutter", "Firebase"],
       demoLink: "#",
       githubLink: "#"
     }
@@ -82,23 +94,26 @@ function App() {
       <main>
         <section id="hero" className="hero-section">
           <div className="hero-content">
-            <h1>Welcome to My Portfolio</h1>
-            <p className="hero-subtitle">Web Developer & Designer</p>
+            <h1>My Portfolio</h1>
+            <p className="hero-roman">佐野 優人</p>
+            <p className="hero-subtitle">福岡工業大学 情報工学部 情報工学科 3年 <br/> 情報技術研究部 所属</p>
+            <p className="hero-catch">好奇心と技術で未来を創る</p>
             <div className="hero-buttons">
-              <a href="#projects" className="primary-btn">作品を見る</a>
+              <a href="#projects" className="primary-btn">作品一覧</a>
               <a href="#contact" className="secondary-btn">お問い合わせ</a>
             </div>
             <div className="social-links">
-              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/AliceWonerfulWorld" target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-github"></i>
               </a>
-              <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">
+              <a href="https://x.com/Yuto03944691" target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-twitter"></i>
               </a>
             </div>
+
           </div>
           <div className="scroll-indicator">
-            <span>Scroll Down</span>
+            <span>下へスクロール</span>
             <i className="fas fa-chevron-down"></i>
           </div>
         </section>
@@ -106,12 +121,135 @@ function App() {
         <section id="about" className="about-section">
           <h2>About Me</h2>
           <div className="about-content">
-            <div className="about-image">
-              <img src="/path-to-your-image.jpg" alt="Profile" />
-            </div>
-            <div className="about-text">
-              <h3>自己紹介</h3>
-              <p>ここにあなたの自己紹介を書きます。経歴、興味、目標などを含めると良いでしょう。</p>
+            <div className="about-card">
+              <div className="about-header">
+                <div className="profile-image-container">
+                  <img src={aliceMarkImage} alt="Alice's Profile" className="profile-image" />
+                </div>
+                <div className="profile-info">
+                  <h3 className="profile-name">佐野  優人</h3>
+                  <p className="profile-roman">Sano Yuto</p>
+                  <p className="profile-title">福岡工業大学 情報工学部 情報工学科 3年</p>
+                  <div className="profile-details">
+                    <div className="detail-item">
+                      <i className="fas fa-birthday-cake"></i>
+                      <span>21歳</span>
+                    </div>
+                    <div className="detail-item">
+                      <i className="fas fa-map-marker-alt"></i>
+                      <span>福岡県 柳川市</span>
+                    </div>
+                    <div className="detail-item">
+                      <i className="fas fa-users"></i>
+                      <span>情報技術研究部 所属</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="about-body">
+                <div className="about-section-item">
+                  <h4 className="section-title">
+                    <i className="fas fa-code"></i>
+                    得意領域・技術スタック
+                  </h4>
+                  <div className="tech-stack">
+                    <div className="tech-category">
+                      <span className="category-label">Frontend</span>
+                      <div className="tech-tags">
+                        <span className="tech-tag">React</span>
+                        <span className="tech-tag">Vue.js</span>
+                        <span className="tech-tag">TypeScript</span>
+                        <span className="tech-tag">Tailwind CSS</span>
+                      </div>
+                    </div>
+                    <div className="tech-category">
+                      <span className="category-label">Backend</span>
+                      <div className="tech-tags">
+                        <span className="tech-tag">Node.js</span>
+                        <span className="tech-tag">Express</span>
+                        <span className="tech-tag">Python</span>
+                        <span className="tech-tag">PostgreSQL</span>
+                      </div>
+                    </div>
+                    <div className="tech-category">
+                      <span className="category-label">Mobile</span>
+                      <div className="tech-tags">
+                        <span className="tech-tag">Flutter</span>
+                      </div>
+                    </div>
+                    <div className="tech-category">
+                      <span className="category-label">Tools</span>
+                      <div className="tech-tags">
+                        <span className="tech-tag">Git</span>
+                        <span className="tech-tag">Firebase</span>
+                        <span className="tech-tag">Figma</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="about-section-item">
+                  <h4 className="section-title">
+                    <i className="fas fa-heart"></i>
+                    趣味・興味
+                  </h4>
+                  <div className="hobbies-grid">
+                    <div className="hobby-item">
+                      <div className="hobby-icon">
+                        <i className="fas fa-book"></i>
+                      </div>
+                      <span>読書</span>
+                    </div>
+                    <div className="hobby-item">
+                      <div className="hobby-icon">
+                        <i className="fas fa-microphone"></i>
+                      </div>
+                      <span>カラオケ</span>
+                    </div>
+                    <div className="hobby-item">
+                      <div className="hobby-icon">
+                        <i className="fas fa-utensils"></i>
+                      </div>
+                      <span>グルメ探索</span>
+                    </div>
+                    <div className="hobby-item">
+                      <div className="hobby-icon">
+                        <i className="fas fa-music"></i>
+                      </div>
+                      <span>音楽鑑賞</span>
+                    </div>
+                    <div className="hobby-item">
+                      <div className="hobby-icon">
+                        <i className="fas fa-gamepad"></i>
+                      </div>
+                      <span>ゲーム開発</span>
+                    </div>
+                    <div className="hobby-item">
+                      <div className="hobby-icon">
+                        <i className="fas fa-tv"></i>
+                      </div>
+                      <span>アニメ鑑賞</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="about-section-item">
+                  <h4 className="section-title">
+                    <i className="fas fa-lightbulb"></i>
+                    自己紹介
+                  </h4>
+                  <p className="about-description">
+                    こんにちは！佐野 優人と申します。<br />
+                    福岡工業大学 情報工学部 情報工学科の3年生です！<br/>
+                    現在、27卒としてエンジニア職を目指して就職活動中です。<br/>
+                    個人・チーム問わずアプリやゲームの開発に取り組んでおり、特にUI/UX周りの開発が得意です。<br/>
+                    新しい技術の学習も楽しんでおり、常に成長し続けることを心がけています。<br/>
+                    将来は、技術を通じて人と人のつながりを生み出すエンジニアになりたい <br/>
+
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -122,12 +260,12 @@ function App() {
             <div className="timeline-item">
               <div className="timeline-dot"></div>
               <div className="timeline-content">
-                <h3>会社名</h3>
-                <p className="timeline-date">2020 - 現在</p>
+                <h3>福岡工業大学  情報工学部  情報工学科</h3>
+                <p className="timeline-date">2025 - 現在</p>
                 <p>職種: フロントエンド開発者</p>
                 <ul>
-                  <li>Reactを使用したWebアプリケーションの開発</li>
-                  <li>レスポンシブデザインの実装</li>
+                  <li>情報技術研究部に所属</li>
+                  <li>フロントエンドを中心に開発を行っている</li>
                   <li>チーム開発でのGit運用</li>
                 </ul>
               </div>
@@ -135,13 +273,25 @@ function App() {
             <div className="timeline-item">
               <div className="timeline-dot"></div>
               <div className="timeline-content">
-                <h3>会社名</h3>
-                <p className="timeline-date">2018 - 2020</p>
-                <p>職種: Webデザイナー</p>
+                <h3>福岡工業大学短期大学部  情報メディア学科</h3>
+                <p className="timeline-date">2023 - 2025</p>
+                <p>学位: 短期大学士</p>
                 <ul>
-                  <li>Webサイトのデザインと実装</li>
-                  <li>UI/UXデザイン</li>
-                  <li>クライアントとの要件定義</li>
+                  <li>Flutterでのモバイルアプリ開発</li>
+                  <li>2年前期 学年首席</li>
+                  <li>大学への編入へ向けて勉強</li>
+                </ul>
+              </div>
+            </div>
+            <div className="timeline-item">
+              <div className="timeline-dot"></div>
+              <div className="timeline-content">
+                <h3>福岡県立筑前高等学校  普通科</h3>
+                <p className="timeline-date">2020 - 2023</p>
+                <ul>
+                  <li>生徒会執行部に所属</li>
+                  <li>学生チームでのプロジェクトリーダー</li>
+                  <li>優秀論文賞受賞</li>
                 </ul>
               </div>
             </div>
@@ -168,7 +318,7 @@ function App() {
                       width: `${100 / numProjects}%`, // Each card takes 1/numProjects of the container width
                     }}
                   >
-                    <img src={project.image} alt={project.title} className="project-image" />
+                    <img src={project.titleImage} alt={project.title} className="project-image" />
                     <h3 className="project-title">{project.title}</h3>
                     <p className="project-description">{project.description}</p>
                     
@@ -185,6 +335,9 @@ function App() {
                       <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link">View Project</a>
                       <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="project-link demo-link">Demo Video</a>
                       <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="project-link github-link">GitHub</a>
+                      {project.detailsLink && project.detailsLink !== "#" && (
+                        <a href={project.detailsLink} target="_blank" rel="noopener noreferrer" className="project-link details-link">Details</a>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -214,85 +367,7 @@ function App() {
         </section>
         {/* END News Section */}
 
-        <section id="skills" className="skills-section">
-          <h2>Skills</h2>
-          <div className="skills-container">
-            <div className="skill-category">
-              <h3>フロントエンド</h3>
-              <div className="skill-bars">
-                <div className="skill-bar">
-                  <div className="skill-info">
-                    <span>HTML/CSS</span>
-                    <span>90%</span>
-                  </div>
-                  <div className="skill-progress">
-                    <div className="progress" style={{width: '90%'}}></div>
-                  </div>
-                </div>
-                <div className="skill-bar">
-                  <div className="skill-info">
-                    <span>JavaScript</span>
-                    <span>85%</span>
-                  </div>
-                  <div className="skill-progress">
-                    <div className="progress" style={{width: '85%'}}></div>
-                  </div>
-                </div>
-                <div className="skill-bar">
-                  <div className="skill-info">
-                    <span>React</span>
-                    <span>80%</span>
-                  </div>
-                  <div className="skill-progress">
-                    <div className="progress" style={{width: '80%'}}></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="skill-category">
-              <h3>バックエンド</h3>
-              <div className="skill-bars">
-                <div className="skill-bar">
-                  <div className="skill-info">
-                    <span>Node.js</span>
-                    <span>85%</span>
-                  </div>
-                  <div className="skill-progress">
-                    <div className="progress" style={{width: '85%'}}></div>
-                  </div>
-                </div>
-                <div className="skill-bar">
-                  <div className="skill-info">
-                    <span>Express</span>
-                    <span>80%</span>
-                  </div>
-                  <div className="skill-progress">
-                    <div className="progress" style={{width: '80%'}}></div>
-                  </div>
-                </div>
-                <div className="skill-bar">
-                  <div className="skill-info">
-                    <span>MongoDB</span>
-                    <span>75%</span>
-                  </div>
-                  <div className="skill-progress">
-                    <div className="progress" style={{width: '75%'}}></div>
-                  </div>
-                </div>
-                <div className="skill-bar">
-                  <div className="skill-info">
-                    <span>SQL</span>
-                    <span>70%</span>
-                  </div>
-                  <div className="skill-progress">
-                    <div className="progress" style={{width: '70%'}}></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+
 
         <section id="contact" className="contact-section">
           <h2>Contact</h2>

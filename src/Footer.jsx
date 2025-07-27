@@ -21,10 +21,15 @@ const Footer = () => {
 
         <div className="footer-section">
           <h3>コンタクト</h3>
-          <ul>
-            <li>Email: example@email.com</li>
-            <li>GitHub: github.com/username</li>
-            <li>LinkedIn: linkedin.com/in/username</li>
+          <ul className="footer-contact-list">
+            <li>
+              <i className="fas fa-envelope"></i>
+              <a href="mailto:chebukinowashiwashi@gmail.com">chebukinowashiwashi@gmail.com</a>
+            </li>
+            <li>
+              <i className="fab fa-github"></i>
+              <a href="https://github.com/AliceWonerfulWorld" target="_blank" rel="noopener noreferrer">github.com/AliceWonerfulWorld</a>
+            </li>
           </ul>
         </div>
       </div>
