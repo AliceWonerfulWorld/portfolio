@@ -5,6 +5,11 @@ import './App.css';
 import nesupaniImage from './assets/nesupani.png';
 import quizmasterImage from './assets/quizmaster.png';
 import aliceMarkImage from './assets/AliceMark.png';
+import nisettiImage from './assets/nisetti.png';
+import animeishiImage from './assets/Animeishi.png';
+import sikapokeImage from './assets/sikapoke2.png';
+import seitouImage from './assets/oneforall.png';
+import listen39Image from './assets/Listen39.png';
 
 function App() {
   const [currentProject, setCurrentProject] = useState(0);
@@ -22,8 +27,8 @@ function App() {
     },
     {
       title: "ニセッチ2",
-      description: "ハックツハッカソン ギガノトカップにて作成しました。",
-      titleImage: "https://via.placeholder.com/600x400?text=Project+Title+2",
+      description: "ハックツハッカソン ギガノトカップにて作成しました。今話題のあのゲーム機っぽいものを作ってみました。Joy-conを使って遊べるゲームも入っています。",
+      titleImage: nisettiImage,
       contentImage: "https://via.placeholder.com/600x400?text=Project+Content+2",
       tags: ["React", "GCP", "JavaScript", "Terraform"],
       link: "https://giganoto-front.pages.dev/",
@@ -33,7 +38,7 @@ function App() {
     },
     {
       title: "寝過ごしパニック！",
-      description: "部内ハッカソンにて作成しました。「Flutter,React,JavaScript,LineMessagingAPIを必ず使用する」という技術縛りの中開発したプロダクトだったので非常に開発が大変でした。",
+      description: "部内ハッカソンにて作成しました。「Flutter,React,JavaScript,LineMessagingAPIを必ず使用する」という技術縛りの中開発したプロダクトだったので非常に開発が大変でした。部内ハッカソンにて最優秀賞受賞 2025/07/05開催 技育博 vol3 にて展示",
       titleImage: nesupaniImage,
       contentImage: "https://via.placeholder.com/600x400?text=Nesupani+App+Screenshot",
       tags: ["Flutter", "Firebase", "React", "JavaScript", "LineMessagingAPI", "Unity", "MediaPipe"],
@@ -44,13 +49,42 @@ function App() {
     },
     {
       title: "アニ名刺",
-      description: "データ分析と視覚化に焦点を当てたプロジェクトです。D3.jsなどのライブラリを活用しています。",
-      titleImage: "https://via.placeholder.com/600x400?text=Project+Title+4",
+      description: "2025.2.1～2.2の技育CAMPハッカソン 2024年度 Vol.21にて製作しました。初対面の人と会話をするときに会話のネタがない.....そんなときに役立つようなアプリを目指して作りました。",
+      titleImage: animeishiImage,
       contentImage: "https://via.placeholder.com/600x400?text=Project+Content+4",
       tags: ["Flutter", "Firebase"],
+      link: "https://animeishi-73560.firebaseapp.com/",
       demoLink: "#",
-      githubLink: "#"
-    }
+      githubLink: "https://github.com/KOU050223/Animeishi"
+    },
+    {
+      title: "SIKAPOKE(Sikaku mounting Card Game Pocket)",
+      description: "2025.3.26～3.27 技育CAMPハッカソン 2025年度 vol1にて制作しました。今話題のあのカードゲームをオマージュして作ってみました。パックを引いて、カードを5枚選んで自分だけのデッキを作ろう！ 努力賞 受賞",
+      titleImage: sikapokeImage,
+      contentImage: "https://via.placeholder.com/600x400?text=Project+Content+4",
+      tags: ["Flutter", "Firebase"],
+      link: "https://sikapoke-42416.web.app/",
+      demoLink: "https://www.youtube.com/watch?app=desktop&v=V33WS5e4fNQ&list=PLxw0gD-pIxZfvlgVJBUwSeMR5snLB64y9&index=14",
+      githubLink: "https://github.com/RiTa-23/SIKAPOKE_flutter"
+    },
+    {
+      title: "政党まとめサイト",
+      description: "2023年9月 カラビナテクノロジー株式会社の2weeksインターンシップに参加した際に作成しました。Web制作には、NotionとStudioという2つのノーコードツールを使用しました",
+      titleImage: seitouImage,
+      contentImage: "https://via.placeholder.com/600x400?text=Project+Content+4",
+      tags: ["Notion", "Studio"],
+      link: "https://seitou2023.studio.site/",
+    },
+    {
+      title: "Listen With 39",
+      description: "初音ミク「マジカルミライ 2025」プログラミング・コンテスト 応募作品 曲に合わせてミクが動くMVを作成しました。",
+      titleImage: listen39Image,
+      contentImage: "https://via.placeholder.com/600x400?text=Project+Content+4",
+      tags: ["Typescript", "Babylon.js","Blender"],
+      link: "https://magimira2025-henon.pages.dev/?k=magimira39",
+      githubLink: "https://github.com/henohenon/magimira2025"
+    },
+    
   ];
 
   const numProjects = projects.length;
@@ -160,13 +194,13 @@ function App() {
                         <span className="tech-tag">React</span>
                         <span className="tech-tag">Vue.js</span>
                         <span className="tech-tag">TypeScript</span>
-                        <span className="tech-tag">Tailwind CSS</span>
+                        <span className="tech-tag">JavaScript</span>
                       </div>
                     </div>
                     <div className="tech-category">
                       <span className="category-label">Backend</span>
                       <div className="tech-tags">
-                        <span className="tech-tag">Node.js</span>
+                        <span className="tech-tag">Ruby</span>
                         <span className="tech-tag">Express</span>
                         <span className="tech-tag">Python</span>
                         <span className="tech-tag">PostgreSQL</span>
@@ -245,7 +279,7 @@ function App() {
                     現在、27卒としてエンジニア職を目指して就職活動中です。<br/>
                     個人・チーム問わずアプリやゲームの開発に取り組んでおり、特にUI/UX周りの開発が得意です。<br/>
                     新しい技術の学習も楽しんでおり、常に成長し続けることを心がけています。<br/>
-                    将来は、技術を通じて人と人のつながりを生み出すエンジニアになりたい <br/>
+                    将来は、技術を通じて人と人のつながりを生み出すエンジニアになりたいです！！ <br/>
 
                   </p>
                 </div>
@@ -262,7 +296,7 @@ function App() {
               <div className="timeline-content">
                 <h3>福岡工業大学  情報工学部  情報工学科</h3>
                 <p className="timeline-date">2025 - 現在</p>
-                <p>職種: フロントエンド開発者</p>
+                <p>短大より3年次編入</p>
                 <ul>
                   <li>情報技術研究部に所属</li>
                   <li>フロントエンドを中心に開発を行っている</li>
@@ -290,8 +324,8 @@ function App() {
                 <p className="timeline-date">2020 - 2023</p>
                 <ul>
                   <li>生徒会執行部に所属</li>
-                  <li>学生チームでのプロジェクトリーダー</li>
-                  <li>優秀論文賞受賞</li>
+                  <li>各学校行事の運営を担当</li>
+                  <li>3年次に実用英語技能検定2級を取得</li>
                 </ul>
               </div>
             </div>
@@ -332,9 +366,15 @@ function App() {
                     </div>
                     
                     <div className="project-buttons">
-                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link">View Project</a>
-                      <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="project-link demo-link">Demo Video</a>
-                      <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="project-link github-link">GitHub</a>
+                    {project.link && project.link !== "#" && (
+                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link">View Project</a>
+                      )}
+                      {project.demoLink && project.demoLink !== "#" && (
+                        <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="project-link demo-link">Demo Video</a>
+                      )}
+                      {project.githubLink && project.githubLink !== "#" && (
+                        <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="project-link github-link">GitHub</a>
+                      )}
                       {project.detailsLink && project.detailsLink !== "#" && (
                         <a href={project.detailsLink} target="_blank" rel="noopener noreferrer" className="project-link details-link">Details</a>
                       )}
