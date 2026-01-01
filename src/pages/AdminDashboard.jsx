@@ -1,24 +1,39 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import ProjectEditor from '../components/admin/ProjectEditor';
+import NewsEditor from '../components/admin/NewsEditor';
+import './AdminDashboard.css';
 
 const AdminDashboard = () => {
     const navigate = useNavigate();
     const { logout } = useAuth();
-
+    const [activeTab, setActiveTab] = useState('projects'); 
+    // 'projects' or 'news'
+ 
     const handleLogout = () => {
         logout();
         navigate('/');
     };
 
     return (
-        <div style={{ padding: '40px', minHeight: '100vh'}}>
+       <div className="admin-dashboard">
+         {/* ヘッダー */}
+         <header className="admin-header">
             <h1>管理画面</h1>
-            <p>ログインに成功しました！</p>
-            <button onClick={handleLogout}>ログアウト</button>
-            <hr />
-            <p>ここに後でプロジェクト・ニュース編集機能を追加します</p>
-        </div>
+            <div className="admin-actions">
+              <button onClick={() => navigate('/')} className="home-btn">
+                サイトを見る
+              </button>
+              <button onClick={handleLogout} className="logout-btn">
+                ログアウト
+              </button>
+            </div>
+         </header>
+
+        
+         
+       </div>
     );
 };
 
