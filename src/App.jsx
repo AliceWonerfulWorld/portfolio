@@ -1,28 +1,41 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 import './App.css';
-import Header from './components/layout/Header';
-import Footer from './components/layout/Footer';
-import Hero from './components/sections/Hero';
-import About from './components/sections/About';
-import Experience from './components/sections/Experience';
-import Projects from './components/sections/Projects';
-import News from './components/sections/News';
-import Contact from './components/sections/Contact';
+
+// Pages
+import HomePage from './pages/HomePage';
+import AdminLogin from './pages/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard';
+
+// Components
+import ProtectedRoute from './components/admin/ProtectedRoute';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <main>
-        <Hero />
-        <About />
-        <Experience />
-        <Projects />
-        <News />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <div className="App">
+          <Routes>
+            {/* ホームページ */}
+            <Route path="/" element={<HomePage/>}/>
+
+            {/* ログインページ */}
+            <Route path="/admin/login" element={<AdminLogin/>} />
+
+            {/* 管理画面(ProtectedRouteで保護) */}
+            <Route 
+             path="/admin" 
+             element= {
+              <ProtectedRoute>
+               <AdminDashboard/>
+             </ProtectedRoute>
+            }
+           />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
