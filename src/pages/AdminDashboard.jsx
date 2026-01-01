@@ -31,7 +31,18 @@ const AdminDashboard = () => {
             </div>
          </header>
 
-        
+         {/* タブナビゲーション */}
+         <nav className="admin-tabs">
+           <button className={`tab ${activeTab === 'projects' ? 'active' : ''}`}
+           onClick={() => setActiveTab('projects')}>
+            プロジェクト編集
+           </button>
+
+           <button className={`tab ${activeTab === 'news' ? 'active' : ''}`}
+            onClick={() => setActiveTab('news')}>
+                ニュース編集
+            </button>
+         </nav>
          
        </div>
     );
