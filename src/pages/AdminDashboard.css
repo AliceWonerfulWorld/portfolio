@@ -1,0 +1,115 @@
+.admin-dashboard {
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+/* ヘッダー */
+.admin-header {
+  background: white;
+  padding: 20px 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-header h1 {
+  margin: 0;
+  color: #333;
+  font-size: 24px;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.home-btn,
+.logout-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.home-btn {
+  background: #667eea;
+  color: white;
+}
+
+.home-btn:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+}
+
+.logout-btn {
+  background: #e74c3c;
+  color: white;
+}
+
+.logout-btn:hover {
+  background: #c0392b;
+  transform: translateY(-2px);
+}
+
+/* タブナビゲーション */
+.admin-tabs {
+  background: white;
+  padding: 0 40px;
+  display: flex;
+  gap: 10px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.admin-tabs .tab {
+  padding: 15px 25px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-size: 16px;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  top: 2px;
+}
+
+.admin-tabs .tab:hover {
+  color: #667eea;
+  background: #f5f7fa;
+}
+
+.admin-tabs .tab.active {
+  color: #667eea;
+  border-bottom-color: #667eea;
+  font-weight: 600;
+}
+
+/* コンテンツエリア */
+.admin-content {
+  padding: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+  .admin-header {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .admin-tabs {
+    padding: 0 20px;
+    overflow-x: auto;
+  }
+
+  .admin-content {
+    padding: 20px;
+  }
+}
