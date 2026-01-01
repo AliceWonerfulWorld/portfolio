@@ -43,7 +43,12 @@ const AdminDashboard = () => {
                 ニュース編集
             </button>
          </nav>
-         
+
+         {/* コンテンツエリア */}
+         <main className="admin-content">
+            {activeTab === 'projects' && <ProjectEditor />}
+            {activeTab === 'news' && <NewsEditor />}
+         </main>
        </div>
     );
 };
