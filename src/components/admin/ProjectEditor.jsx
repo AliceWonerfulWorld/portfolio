@@ -76,5 +76,36 @@ const ProjectEditor = () => {
         setEditingProject({ ...editingProject, tags: tagsArray });
     };
 
-    
+    // JSONエクスポート
+    const handleExport = () => {
+        const dataStr = JSON.stringify(projects, null, 2);
+        const blob = new Blob([dataStr], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `projects_${new Date().toISOString().slice(0, 10)}.json`;
+        link.click();
+        URL.revokeObjectURL(url);
+    };
+
+    return (
+        <div className="editor-container">
+          <div className="editor-header">
+            <h2>プロジェクト管理</h2>
+            <div className="header-actions">
+              <button onClick={handleExport} className="export-btn">
+                 JSONエクスポート
+              </button>
+
+              <button onClick={handleAdd} className="add-btn">
+                 新規追加
+              </button>
+            </div>
+          </div>
+
+          
+        </div>
+    )
+
+
 }
