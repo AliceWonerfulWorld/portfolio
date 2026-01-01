@@ -50,4 +50,31 @@ const ProjectEditor = () => {
         setEditingProject(null);
         setIsAdding(false);
     };
+
+    // 削除
+    const handleDelete = (index) => {
+        if (window.confirm('本当に削除しますか?')) {
+            const newProjects = projects.filter((_, i) => i !== index);
+            setProjects(newProjects);
+        }
+    };
+
+    // キャンセル
+    const handleCancel = () => {
+        setEditingProject(null);
+        setIsAdding(false);
+    };
+
+    // フォーム入力の変更
+    const handleChange = (field, value) => {
+        setEditingProject({ ...editingProject, [field]: value});
+    };
+
+    // タグの変更 (カンマ区切り文字列を配列に変換)
+    const handleTagsChange = (value) => {
+        const tagsArray = value.split(',').map(tag => tag.trim()).filter(tag => tag);
+        setEditingProject({ ...editingProject, tags: tagsArray });
+    };
+
+    
 }
