@@ -98,6 +98,7 @@
     transition: all 0.3s;
     box-sizing: border-box;
     background: #f8fcff;
+    color: #333;
 }
 
 .form-group input:focus {
