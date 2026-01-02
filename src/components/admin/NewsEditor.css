@@ -1,0 +1,92 @@
+/* NewsEditorはProjectEditorと同じスタイルを使用 */
+
+.news-list {
+  margin-top: 30px;
+}
+
+.news-list h3 {
+  margin: 0 0 20px 0;
+  color: #333;
+  font-size: 18px;
+}
+
+.news-item-card {
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: box-shadow 0.3s;
+}
+
+.news-item-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.news-info {
+  flex: 1;
+}
+
+.news-date {
+  display: inline-block;
+  background: #667eea;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.news-info h4 {
+  margin: 10px 0;
+  color: #333;
+  font-size: 18px;
+}
+
+.news-info p {
+  margin: 10px 0;
+  color: #666;
+  line-height: 1.6;
+}
+
+.news-link-preview {
+  display: inline-block;
+  margin-top: 10px;
+  color: #3498db;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.news-link-preview:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
+.news-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+  .news-item-card {
+    flex-direction: column;
+  }
+
+  .news-actions {
+    margin-top: 15px;
+    width: 100%;
+  }
+
+  .edit-btn-small,
+  .delete-btn {
+    flex: 1;
+  }
+}
