@@ -140,7 +140,7 @@ const ProjectEditor = () => {
                         <label>タグ(カンマ区切り)</label>
                         <input
                             type="text"
-                            value={editingProject.tags.join(',')}
+                            value={editingProject.tags.join(', ')}
                             onChange={(e) => handleTagsChange(e.target.value)}
                             placeholder="React, Firebase, TypeScript"
                         />
