@@ -64,4 +64,70 @@ const NewsEditor = () => {
     const handleChange = (field, value) => {
         setEditingNews({ ...editingNews, [field]: value });
     };
+
+    // JSONエクスポート
+    const handleExport = () => {
+        const dataStr = JSON.stringify(newsItems, null, 2);
+        const blob = new Blob([dataStr], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `news_${new Date().toISOString().slice(0, 10)}.json`;
+        link.click();
+        URL.revokeObjectURL(url);
+    };
+
+    return (
+        <div className="editor-container">
+          <div className="editor-header">
+            <h2>ニュース管理</h2>
+            <div className="header-actions">
+                <button onClick={handleExport} className="export-btn">
+                    JSONエクスポート
+                </button>
+                <button onClick={handleAdd} className="add-btn">
+                    新規追加
+                </button>
+            </div>
+          </div>
+
+          {/* 編集フォーム */}  
+          {editingNews && (
+            <div className="edit-form">
+              <h3>{isAdding ? '新規ニュース' : 'ニュース編集'} </h3>
+
+              <div className="form-row">
+                <label>日付 *</label>
+                <input
+                 type="text"
+                 value={editingNews.date}
+                 onChange={(e) => handleChange('date', e.target.value)}
+                 placeholder="2025年7月26日"
+                />
+              </div>
+
+              <div className="form-row">
+                <label>タイトル *</label>
+                <input
+                 type="text"
+                 value={editingNews.title}
+                 onChange={(e) => handleChange('title', e.target.value)}
+                 placeholder="イベント名など"
+                 />
+              </div>
+
+              <div className="form-row">
+                <label>内容 *</label>
+                <textarea 
+                 value={editingNews.context}
+                 onChange={(e) => handleChange('context', e.target.value)}
+                 placeholder="ニュースの内容を入力..."
+                 row={6}
+                />
+              </div>
+
+          )}        
+          
+        </div>
+    )
 }
