@@ -53,4 +53,15 @@ const NewsEditor = () => {
             setNewsItems(newNewsItems);
         }
     };
+
+    // キャンセル
+    const handleCancel = () => {
+        setEditingNews(null);
+        setIsAdding(false);
+    };
+
+    // フォーム入力の変更
+    const handleChange = (field, value) => {
+        setEditingNews({ ...editingNews, [field]: value });
+    };
 }
