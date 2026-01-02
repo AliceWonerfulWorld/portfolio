@@ -136,9 +136,56 @@ const ProjectEditor = () => {
                    placeholder="https://example.com/image.jpg"/>
                 </div>
 
-                
+                <div className="form-row">
+                  <label>タグ(カンマ区切り)</label>
+                  <input
+                   type="text"
+                   value={editingProject.tags.join(',')}
+                   onChange={(e) => handleTagsChange(e.target.value)}
+                   placeholder="React, Firebase, TypeScript"
+                  />
+                </div>
+
+                <div className="form-row">
+                  <label>プロジェクトリンク</label>
+                  <input
+                   type="url"
+                   value={editingProject.link || ''}
+                   onChange={(e) => handleChange('link', e.target.value)}
+                   placeholder="https://..."
+                  />
+                </div>
+
+                <div className="form-row">
+                  <label>デモ動画リンク</label>
+                  <input
+                   type="url"
+                   value={editingProject.demoLink || ''}
+                   onChange={(e) => handleChange('demoLink' , e.target.value)}
+                   placeholder="https://..."
+                  />
+                </div>
+
+                <div className="form-row">
+                    <label>Githubリンク</label>
+                    <input
+                     type="url"
+                     value={editingProject.githubLink || ''}
+                     onChange={(e) => handleChange('githubLink', e.target.value)}
+                     placeholder="https://..."
+                    />
+                </div>
+
+                <div className="form-actions">
+                 <button onClick={handleSave} className="save-btn">
+                    保存
+                 </button>
+                 <button onClick={handleCancel} className="cancel-btn">
+                    キャンセル
+                 </button>
+                </div>
         </div>
-    )
+    )}
 
 
 }
