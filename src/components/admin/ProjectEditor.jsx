@@ -40,7 +40,7 @@ const ProjectEditor = () => {
     const handleSave = () => {
         if (isAdding) {
             // 新規追加
-            setProjects([...projects, editingProject]); 
+            setProjects([...projects, editingProject]);
         } else {
             // 更新
             const newProjects = [...projects];
@@ -67,7 +67,7 @@ const ProjectEditor = () => {
 
     // フォーム入力の変更
     const handleChange = (field, value) => {
-        setEditingProject({ ...editingProject, [field]: value});
+        setEditingProject({ ...editingProject, [field]: value });
     };
 
     // タグの変更 (カンマ区切り文字列を配列に変換)
@@ -90,102 +90,130 @@ const ProjectEditor = () => {
 
     return (
         <div className="editor-container">
-          <div className="editor-header">
-            <h2>プロジェクト管理</h2>
-            <div className="header-actions">
-              <button onClick={handleExport} className="export-btn">
-                 JSONエクスポート
-              </button>
+            <div className="editor-header">
+                <h2>プロジェクト管理</h2>
+                <div className="header-actions">
+                    <button onClick={handleExport} className="export-btn">
+                        JSONエクスポート
+                    </button>
 
-              <button onClick={handleAdd} className="add-btn">
-                 新規追加
-              </button>
+                    <button onClick={handleAdd} className="add-btn">
+                        新規追加
+                    </button>
+                </div>
             </div>
-          </div>
 
-          {/* 編集フォーム */}
-          {editingProject && (
-            <div className="edit-form">
-                <h3>{isAdding ? '新規プロジェクト' : 'プロジェクト編集'}</h3>
+            {/* 編集フォーム */}
+            {editingProject && (
+                <div className="edit-form">
+                    <h3>{isAdding ? '新規プロジェクト' : 'プロジェクト編集'}</h3>
 
-                <div className="form-row">
-                  <label>タイトル *</label>
-                  <input
-                   type="text"
-                   value={editingProject.title}
-                   onChange={(e) =>
-                    handleChange('title', e.target.value)}
-                    placeholder="クイズマスター"/>
+                    <div className="form-row">
+                        <label>タイトル *</label>
+                        <input
+                            type="text"
+                            value={editingProject.title}
+                            onChange={(e) =>
+                                handleChange('title', e.target.value)}
+                            placeholder="クイズマスター" />
+                    </div>
+
+                    <div className="form-row">
+                        <label>説明 *</label>
+                        <textarea
+                            value={editingProject.description}
+                            onChange={(e) => handleChange('description', e.target.value)}
+                            placeholder="プロジェクトの説明を入力..."
+                            rows={4} />
+                    </div>
+
+                    <div className="form-row">
+                        <label>タイトル画像URL</label>
+                        <input
+                            type="text"
+                            value={editingProject.titleImage}
+                            onChange={(e) => handleChange('titleImage', e.target.value)}
+                            placeholder="https://example.com/image.jpg" />
+                    </div>
+
+                    <div className="form-row">
+                        <label>タグ(カンマ区切り)</label>
+                        <input
+                            type="text"
+                            value={editingProject.tags.join(',')}
+                            onChange={(e) => handleTagsChange(e.target.value)}
+                            placeholder="React, Firebase, TypeScript"
+                        />
+                    </div>
+
+                    <div className="form-row">
+                        <label>プロジェクトリンク</label>
+                        <input
+                            type="url"
+                            value={editingProject.link || ''}
+                            onChange={(e) => handleChange('link', e.target.value)}
+                            placeholder="https://..."
+                        />
+                    </div>
+
+                    <div className="form-row">
+                        <label>デモ動画リンク</label>
+                        <input
+                            type="url"
+                            value={editingProject.demoLink || ''}
+                            onChange={(e) => handleChange('demoLink', e.target.value)}
+                            placeholder="https://..."
+                        />
+                    </div>
+
+                    <div className="form-row">
+                        <label>Githubリンク</label>
+                        <input
+                            type="url"
+                            value={editingProject.githubLink || ''}
+                            onChange={(e) => handleChange('githubLink', e.target.value)}
+                            placeholder="https://..."
+                        />
+                    </div>
+
+                    <div className="form-actions">
+                        <button onClick={handleSave} className="save-btn">
+                            保存
+                        </button>
+                        <button onClick={handleCancel} className="cancel-btn">
+                            キャンセル
+                        </button>
+                    </div>
                 </div>
+            )}
 
-                <div className="form-row">
-                  <label>説明 *</label>
-                  <textarea
-                    value={editingProject.description}
-                    onChange={(e) => handleChange('description', e.target.value)}
-                    placeholder="プロジェクトの説明を入力..."
-                    rows={4} />
-                </div>
-
-                <div className="form-row">
-                  <label>タイトル画像URL</label>
-                  <input
-                   type="text"
-                   value={editingProject.titleImage}
-                   onChange={(e) => handleChange('titleImage', e.target.value)}
-                   placeholder="https://example.com/image.jpg"/>
-                </div>
-
-                <div className="form-row">
-                  <label>タグ(カンマ区切り)</label>
-                  <input
-                   type="text"
-                   value={editingProject.tags.join(',')}
-                   onChange={(e) => handleTagsChange(e.target.value)}
-                   placeholder="React, Firebase, TypeScript"
-                  />
-                </div>
-
-                <div className="form-row">
-                  <label>プロジェクトリンク</label>
-                  <input
-                   type="url"
-                   value={editingProject.link || ''}
-                   onChange={(e) => handleChange('link', e.target.value)}
-                   placeholder="https://..."
-                  />
-                </div>
-
-                <div className="form-row">
-                  <label>デモ動画リンク</label>
-                  <input
-                   type="url"
-                   value={editingProject.demoLink || ''}
-                   onChange={(e) => handleChange('demoLink' , e.target.value)}
-                   placeholder="https://..."
-                  />
-                </div>
-
-                <div className="form-row">
-                    <label>Githubリンク</label>
-                    <input
-                     type="url"
-                     value={editingProject.githubLink || ''}
-                     onChange={(e) => handleChange('githubLink', e.target.value)}
-                     placeholder="https://..."
-                    />
-                </div>
-
-                <div className="form-actions">
-                 <button onClick={handleSave} className="save-btn">
-                    保存
-                 </button>
-                 <button onClick={handleCancel} className="cancel-btn">
-                    キャンセル
-                 </button>
-                </div>
+            {/* プロジェクト一覧 */}
+            <div className="projects-list">
+                <h3>プロジェクト一覧 ({projects.length}件)</h3>
+                {projects.map((project, index) => (
+                    <div key={index} className="project-item">
+                        <div className="project-info">
+                            <h4>{project.title}</h4>
+                            <p>{project.description.substring(0, 100)}...</p>
+                            <div className="tags">
+                                {project.tags.map((tag, i) => (
+                                    <span key={i} className="tag">{tag}</span>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="project-actions">
+                            <button onClick={() => handleEdit(project, index)} className="edit-btn-small">
+                                ✏️ 編集
+                            </button>
+                            <button onClick={() => handleDelete(index)} className="delete-btn">
+                                🗑️ 削除
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
-    )}
+    );
+};
 
-
-}
+export default ProjectEditor;
