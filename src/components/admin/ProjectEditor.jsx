@@ -103,7 +103,40 @@ const ProjectEditor = () => {
             </div>
           </div>
 
-          
+          {/* 編集フォーム */}
+          {editingProject && (
+            <div className="edit-form">
+                <h3>{isAdding ? '新規プロジェクト' : 'プロジェクト編集'}</h3>
+
+                <div className="form-row">
+                  <label>タイトル *</label>
+                  <input
+                   type="text"
+                   value={editingProject.title}
+                   onChange={(e) =>
+                    handleChange('title', e.target.value)}
+                    placeholder="クイズマスター"/>
+                </div>
+
+                <div className="form-row">
+                  <label>説明 *</label>
+                  <textarea
+                    value={editingProject.description}
+                    onChange={(e) => handleChange('description', e.target.value)}
+                    placeholder="プロジェクトの説明を入力..."
+                    rows={4} />
+                </div>
+
+                <div className="form-row">
+                  <label>タイトル画像URL</label>
+                  <input
+                   type="text"
+                   value={editingProject.titleImage}
+                   onChange={(e) => handleChange('titleImage', e.target.value)}
+                   placeholder="https://example.com/image.jpg"/>
+                </div>
+
+                
         </div>
     )
 
