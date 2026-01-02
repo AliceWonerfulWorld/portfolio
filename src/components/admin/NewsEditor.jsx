@@ -18,7 +18,6 @@ const NewsEditor = () => {
         date: new Date().toLocaleDateString('ja-JP'),
         title: '',
         content: '',
-        image: '',
     });
 
     // 追加モード開始
@@ -119,10 +118,10 @@ const NewsEditor = () => {
               <div className="form-row">
                 <label>内容 *</label>
                 <textarea 
-                 value={editingNews.context}
-                 onChange={(e) => handleChange('context', e.target.value)}
+                 value={editingNews.content}
+                 onChange={(e) => handleChange('content', e.target.value)}
                  placeholder="ニュースの内容を入力..."
-                 row={6}
+                 rows={6}
                 />
               </div>
 
@@ -145,8 +144,36 @@ const NewsEditor = () => {
                 </button>
               </div>
             </div>
-          )}        
-          
+          )}
+
+          {/* ニュース一覧 */}
+          <div className="news-list">
+            <h3>ニュース一覧 ({newsItems.length}件)</h3>
+            {newsItems.map((news, index) => (
+              <div key={index} className="news-item-card">
+                <div className="news-info">
+                  <div className="news-date">{news.date}</div>
+                  <h4>{news.title}</h4>
+                  <p>{news.content.substring(0, 150)}...</p>
+                  {news.link && news.link !== '#' && (
+                    <a href={news.link} target="_blank" rel="noopener noreferrer" className="news-link-preview">
+                        リンクあり
+                    </a>
+                  )}
+                 </div>
+                 <div className="news-actions">
+                  <button onClick={() => handleEdit(news, index)} className="edit-btn-small">
+                    編集
+                  </button>
+                  <button onClick={() => handleDelete(index)} className="delete-btn">
+                    削除
+                  </button>
+                </div>
+              </div> 
+            ))}
+          </div>
         </div>
-    )
-}
+    );
+};
+
+export default NewsEditor;
