@@ -126,6 +126,25 @@ const NewsEditor = () => {
                 />
               </div>
 
+              <div className="form-row">
+                <label>リンク(オプション)</label>
+                <input 
+                 type="url"
+                 value={editingNews.link || ''}
+                 onChange={(e) => handleChange('link', e.target.value)}
+                 placeholder="https://..."
+                />     
+              </div>
+
+              <div className="form-actions">
+                <button onClick={handleSave} className="save-btn">
+                    保存
+                </button>
+                <button onClick={handleCancel} className="cancel-btn">
+                    キャンセル
+                </button>
+              </div>
+            </div>
           )}        
           
         </div>
