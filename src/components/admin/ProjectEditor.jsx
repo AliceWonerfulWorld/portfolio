@@ -5,7 +5,7 @@ import './ProjectEditor.css';
 const ProjectEditor = () => {
     const [projects, setProjects] = useState([]);
     const [editingProject, setEditingProject] = useState(null);
-    const [isAdding, setAdding] = useState(false);
+    const [isAdding, setIsAdding] = useState(false);
 
     // 初回レンダリング時に既存データを読み込み
     useEffect(() => {
