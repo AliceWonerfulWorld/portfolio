@@ -24,7 +24,7 @@ const ProjectCard = ({ project }) => {
     ].filter(([url]) => url && url !== '#');
 
     return (
-        <li className="project-tile">
+        <li className="project-tile" id={project.id ? `project-${project.id}` : undefined}>
             <article>
                 <div className="project-tile-media">
                     {project.titleImage
