@@ -26,9 +26,9 @@ const Header = () => {
                 </div>
                 <nav className="header-nav">
                     <ul className="header-nav-list">
-                        <li><a onClick={() => scrollToSection('about')} className="nav-link">About</a></li>
-                        <li><a onClick={() => scrollToSection('projects')} className="nav-link">Projects</a></li>
-                        <li><a onClick={() => scrollToSection('contact')} className="nav-link">Contact</a></li>
+                        <li><a onClick={() => scrollToSection('about')} className="nav-link">自己紹介</a></li>
+                        <li><a onClick={() => scrollToSection('projects')} className="nav-link">作品</a></li>
+                        <li><a onClick={() => scrollToSection('contact')} className="nav-link">お問い合わせ</a></li>
                     </ul>
                 </nav>
             </div>

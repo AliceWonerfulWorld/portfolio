@@ -32,7 +32,7 @@ const Contact = () => {
                         <label htmlFor="message">メッセージ</label>
                         <textarea id="message" name="message" required></textarea>
                     </div>
-                    <button type="submit" className="submit-btn">送信</button>
+                    <button type="submit" className="submit-btn ui-button ui-primary ui-on-dark">送信</button>
                 </form>
             </div>
         </section>

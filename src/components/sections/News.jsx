@@ -52,11 +52,11 @@ const News = () => {
             {newsItems.length > 6 && (
                 <div className="news-show-more">
                     <button
-                        className={`show-more-btn ${isLoading ? 'loading' : ''}`}
+                        className={`show-more-btn ui-button ui-secondary ${isLoading ? 'loading' : ''}`}
                         onClick={handleShowMoreClick}
                         disabled={isLoading}
                     >
-                        {showAllNews ? 'Show Less' : 'Show More'}
+                        {isLoading ? '切り替え中…' : showAllNews ? '表示を減らす' : 'もっと見る'}
                     </button>
                 </div>
             )}
