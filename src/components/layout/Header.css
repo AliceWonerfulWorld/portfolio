@@ -84,41 +84,78 @@
   width: 90%;
 }
 
-/* Responsive styles */
-@media (max-width: 500px) {
+/* The navigation stays in normal flow so expanded links never cover content. */
+.header-menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  background: transparent;
+  color: white;
+  border: 1px solid #708297;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  box-sizing: border-box;
+}
+
+.header-menu-toggle:focus-visible,
+.nav-link:focus-visible {
+  outline: 3px solid #C7DDF5;
+  outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding-block: 0.5rem;
+  }
+
   .header-inner-container {
-    flex-direction: column;
-    align-items: flex-start;
-    /* border: 2px solid lime; */ /* Test border removed */
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    box-sizing: border-box;
+  }
+
+  .logo-container {
+    min-width: 0;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .logo {
+    height: 26px;
+  }
+
+  .header-menu-toggle {
+    display: inline-flex;
+    margin-left: auto;
   }
 
   .header-nav {
-    margin-left: 0; /* Reset margin for stacking */
-    margin-top: 1rem; /* Add space between logo and nav */
-    width: 100%;
+    display: none;
+    flex-basis: 100%;
+    margin: 0;
+  }
+
+  .header-nav.is-open {
+    display: block;
   }
 
   .header-nav-list {
     flex-direction: column;
-    gap: 0.5rem; 
-    align-items: flex-start; 
-    width: 100%;
-    /* border: 2px solid yellow; */ /* Test border removed */
+    gap: 0.25rem;
   }
 
   .nav-link {
-    padding: 0.5rem 0; /* Adjust padding for vertical items */
-    display: block; /* Make links take full width */
-    width: 100%;
-    text-align: left;
+    padding: 0.5rem 0.75rem;
   }
-
-  .nav-link:hover::after {
-    width: 100%; /* Make hover effect full width */
-  }
-
-  /* Test background color for .header removed */
-  /* .header { 
-    background-color: purple !important; 
-  } */
 }
