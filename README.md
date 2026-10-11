@@ -1,5 +1,17 @@
 # React + Vite
 
+## Local development
+
+Use Node.js 22.x (see `.node-version` and `package.json`). Set the deployment
+environment's Node.js version to 22.x as well.
+
+```sh
+npm ci
+npm run dev
+```
+
+Run `npm run build` to create a production build.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
