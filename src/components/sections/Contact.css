@@ -1,0 +1,90 @@
+.contact-links-content {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+    gap: 2rem;
+}
+
+.contact-methods {
+    display: grid;
+    gap: 1.5rem;
+    min-width: 0;
+}
+
+.contact-method {
+    padding: clamp(1rem, 3vw, 1.5rem);
+    border: 1px solid var(--accent-color-2);
+    border-radius: var(--border-radius-lg);
+    min-width: 0;
+}
+
+.contact-method h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0 0 1rem;
+    font-size: 1.25rem;
+}
+
+.contact-method p {
+    color: var(--secondary-color);
+    overflow-wrap: anywhere;
+    margin: 0.75rem 0 0;
+}
+
+.contact-method label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.contact-method textarea {
+    resize: none;
+    overflow-wrap: anywhere;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    padding: 0.75rem;
+    font-size: 1rem;
+    background: var(--background-dark);
+    color: var(--secondary-color);
+    border: 1px solid var(--accent-color-2);
+    border-radius: var(--border-radius-md);
+}
+
+.contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.contact-method .ui-button {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+.contact-copy-status {
+    min-height: 1.8em;
+}
+
+.contact-new-tab {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+@media (max-width: 992px) {
+    .contact-links-content {
+        grid-template-columns: minmax(0, 1fr);
+        padding-inline: 1rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .contact-actions {
+        flex-direction: column;
+    }
+}
