@@ -304,3 +304,79 @@ textarea::placeholder {
     gap: var(--spacing-md);
   }
 }
+
+/* Public content must fit its container, including unbroken URLs and tags. */
+main section,
+.footer {
+  overflow-wrap: anywhere;
+}
+
+.news-container {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+.news-item {
+  min-width: 0;
+}
+
+.project-tile-tags .tech-tag,
+.tech-tags .tech-tag {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: normal;
+}
+
+.project-tile-details summary {
+  min-height: 44px;
+  box-sizing: border-box;
+}
+
+.social-links a,
+.news-link,
+.footer-section ul li a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.social-links a {
+  justify-content: center;
+  min-width: 44px;
+}
+
+.footer-section,
+.footer-contact-list li,
+.footer-contact-list a {
+  min-width: 0;
+}
+
+.footer-contact-list a {
+  display: block;
+  align-content: center;
+}
+
+@media (max-width: 768px) {
+  .hero-layout {
+    padding-inline: 0;
+  }
+
+  .about-content,
+  .news-container,
+  .contact-links-content {
+    padding-inline: 1rem;
+  }
+
+  .about-card {
+    margin-inline: 0;
+  }
+
+  .news-container {
+    gap: 1.5rem;
+  }
+
+  .news-section {
+    overflow: visible;
+  }
+}

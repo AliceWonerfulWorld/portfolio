@@ -1387,12 +1387,6 @@ section p {
 
 /* アクティブ状態のスタイル */
 
-/* 横スクロールバーをページ全体で非表示にする */
-html,
-body {
-  overflow-x: hidden;
-}
-
 body {
   position: relative;
 }
