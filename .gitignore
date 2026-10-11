@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local Cloudflare configuration, credentials, database, and content backups
+wrangler.jsonc
+.dev.vars
+.wrangler
+content-backups/

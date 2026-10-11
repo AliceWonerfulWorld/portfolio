@@ -1,0 +1,12 @@
+{
+  // Copy to wrangler.jsonc, then set your real preview database and Access values.
+  "name": "alice-portfolio",
+  "pages_build_output_dir": "./dist",
+  "compatibility_date": "2026-10-11",
+  "d1_databases": [{"binding": "CONTENT_DB", "database_name": "portfolio-preview", "database_id": "REPLACE_WITH_PREVIEW_DATABASE_ID", "migrations_dir": "migrations"}],
+  "vars": {
+    "ACCESS_TEAM_DOMAIN": "https://REPLACE_TEAM.cloudflareaccess.com",
+    "ACCESS_AUD": "REPLACE_WITH_APPLICATION_AUD",
+    "ADMIN_EMAILS": "REPLACE_WITH_ALLOWED_ADMIN_EMAIL"
+  }
+}

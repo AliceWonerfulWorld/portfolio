@@ -1,29 +1,9 @@
-// 環境変数からパスワードを取得
-const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD;
+import { getSession } from './contentApi.js';
 
-// パスワードが正しいかチェック
-export const verifyPassword = (password) => {
-    return password === ADMIN_PASSWORD;
+// Identity is checked by the server; browser-local tokens are never trusted.
+export const isAuthenticated = async () => {
+  try { await getSession(); return true; }
+  catch { return false; }
 };
-
-// ログイン(localStorageにトークンを保存)
-export const login = (password) => {
-    if (verifyPassword(password)) {
-        // 簡易的なトークンを作成する
-        const token = btoa(password + Date.now());
-        // Base64エンコード
-        localStorage.setItem('adminToken', token);
-        return true;
-    }
-    return false;
-};
-
-// ログアウト(localStorageからトークンを削除する)
-export const logout = () => {
-    localStorage.removeItem('adminToken');
-};
-
-// ログイン状態をチェック
-export const isAuthenticated = () => {
-    return localStorage.getItem('adminToken') !== null;
-};
+export const login = () => { window.location.assign('/admin'); };
+export const logout = () => { window.location.assign('/cdn-cgi/access/logout'); };
