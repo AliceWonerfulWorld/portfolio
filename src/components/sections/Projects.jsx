@@ -1,81 +1,87 @@
-import React, { useState } from 'react';
 import { projects } from '../../data/projects';
+import './Projects.css';
 
-const Projects = () => {
-    const [currentProject, setCurrentProject] = useState(0);
-    const numProjects = projects.length;
+// Render descriptions as text, keeping URLs clickable without injecting HTML.
+const Description = ({ text }) => (
+    <p className="project-tile-description">
+        {text.split(/(https?:\/\/[^\s]+)/g).map((part, index) =>
+            /^https?:\/\//.test(part)
+                ? <a key={index} href={part} target="_blank" rel="noopener noreferrer">{part}</a>
+                : part
+        )}
+    </p>
+);
 
-    const nextProject = () => {
-        setCurrentProject((prev) => (prev + 1) % projects.length);
-    };
+const ProjectCard = ({ project }) => {
+    const tags = project.tags ?? [];
+    const description = project.description ?? '';
+    const summary = project.summary || description.split('\n')[0];
+    const links = [
+        [project.link, '作品を開く', 'ui-primary'],
+        [project.demoLink, 'デモ動画', 'ui-secondary'],
+        [project.githubLink, 'ソースコード', 'ui-secondary'],
+        [project.detailsLink, '制作記事を読む', 'ui-secondary'],
+    ].filter(([url]) => url && url !== '#');
 
-    const prevProject = () => {
-        setCurrentProject((prev) => (prev - 1 + projects.length) % projects.length);
-    };
+    return (
+        <li className="project-tile">
+            <article>
+                <div className="project-tile-media">
+                    {project.titleImage
+                        ? <img src={project.titleImage} alt={`${project.title}の画面`} loading="lazy" />
+                        : <span className="project-image-placeholder">画像準備中</span>}
+                </div>
+                <div className="project-tile-content">
+                    <h3>{project.title}</h3>
+                    {summary && <p className="project-tile-summary">{summary}</p>}
+                    {tags.length > 0 && (
+                        <div className="project-tile-technologies">
+                            <h4>主な使用技術</h4>
+                            <ul className="project-tile-tags">
+                                {tags.slice(0, 3).map((tag, index) => <li className="tech-tag" key={`${tag}-${index}`}>{tag}</li>)}
+                            </ul>
+                        </div>
+                    )}
+                    {(description || tags.length > 3) && (
+                        <details className="project-tile-details">
+                            <summary>作品の詳細を見る<span className="project-detail-context">：{project.title}</span></summary>
+                            {description && <Description text={description} />}
+                            {tags.length > 3 && (
+                                <div className="project-tile-technologies">
+                                    <h4>使用技術一覧</h4>
+                                    <ul className="project-tile-tags">
+                                        {tags.map((tag, index) => <li className="tech-tag" key={`${tag}-${index}`}>{tag}</li>)}
+                                    </ul>
+                                </div>
+                            )}
+                        </details>
+                    )}
+                    {links.length > 0 && (
+                        <div className="project-tile-links" aria-label={`${project.title}の外部リンク`}>
+                            {links.map(([url, label, variant]) => (
+                                <a key={label} href={url} target="_blank" rel="noopener noreferrer" className={`ui-button ${variant}`}>
+                                    {label}<span aria-hidden="true">↗</span>
+                                    <span className="project-detail-context">（新しいタブで開きます）</span>
+                                </a>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </article>
+        </li>
+    );
+};
 
-    // URLを自動検出してリンクに変換する関数
-    const formatDescription = (description) => {
-        // URLを検出してリンクに変換
-        const urlRegex = /(https?:\/\/[^\s]+)/g;
-        const formattedText = description.replace(urlRegex, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
-        // 改行を<br>タグに変換
-        return formattedText.replace(/\n/g, '<br />');
-    };
-
+const Projects = ({ items = projects }) => {
     return (
         <section id="projects" className="projects-section">
             <h2>Projects</h2>
-            <div className="projects-carousel">
-                <button className="carousel-button prev" onClick={prevProject}><i className="fas fa-chevron-left">&#8249;</i></button>
-                <div className="project-viewport">
-                    <div
-                        className="projects-container"
-                        style={{
-                            width: `${numProjects * 100}%`,
-                            transform: `translateX(-${currentProject * (100 / numProjects)}%)`,
-                        }}
-                    >
-                        {projects.map((project, index) => (
-                            <div
-                                key={index}
-                                className="project-card"
-                                style={{
-                                    width: `${100 / numProjects}%`, // Each card takes 1/numProjects of the container width
-                                }}
-                            >
-                                <img src={project.titleImage} alt={project.title} className="project-image" />
-                                <h3 className="project-title">{project.title}</h3>
-                                <p className="project-description" style={{ whiteSpace: 'pre-line' }} dangerouslySetInnerHTML={{ __html: formatDescription(project.description) }}></p>
-
-                                <div className="project-tech">
-                                    <h4>使用技術</h4>
-                                    <div className="tech-tags">
-                                        {project.tags.map((tag, tagIndex) => (
-                                            <span key={tagIndex} className="tech-tag">{tag}</span>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                <div className="project-buttons">
-                                    {project.link && project.link !== "#" && (
-                                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link ui-button ui-primary">アプリを開く</a>
-                                    )}
-                                    {project.demoLink && project.demoLink !== "#" && (
-                                        <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="project-link demo-link ui-button ui-secondary">デモ動画</a>
-                                    )}
-                                    {project.githubLink && project.githubLink !== "#" && (
-                                        <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="project-link github-link ui-button ui-secondary">ソースコード</a>
-                                    )}
-                                    {project.detailsLink && project.detailsLink !== "#" && (
-                                        <a href={project.detailsLink} target="_blank" rel="noopener noreferrer" className="project-link details-link ui-button ui-secondary">制作詳細</a>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <button className="carousel-button next" onClick={nextProject}><i className="fas fa-chevron-right">&#8250;</i></button>
-            </div>
+            <p className="projects-intro">制作した作品 <strong>{items.length}件</strong>。気になる作品の詳細やデモをご覧ください。</p>
+            {items.length === 0
+                ? <p className="projects-empty">作品は準備中です。公開までお待ちください。</p>
+                : <ul className="projects-grid">
+                    {items.map((project, index) => <ProjectCard key={project.id ?? `${project.title}-${index}`} project={project} />)}
+                </ul>}
         </section>
     );
 };
