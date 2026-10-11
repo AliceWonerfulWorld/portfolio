@@ -10,6 +10,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
+    "test:projects": "node scripts/check-projects.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
