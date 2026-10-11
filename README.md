@@ -12,6 +12,17 @@ npm run dev
 
 Run `npm run build` to create a production build.
 
+## Cloudflare Pages
+
+Use npm with the committed `package-lock.json` for dependency installation.
+Do not add a Bun or Yarn lockfile alongside it: multiple lockfiles can cause
+the deployment environment to select a different package manager.
+
+- Build command: `npm run build`
+- Build output directory: `dist`
+- Node.js: 22.x
+
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
