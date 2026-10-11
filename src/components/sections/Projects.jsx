@@ -58,16 +58,16 @@ const Projects = () => {
 
                                 <div className="project-buttons">
                                     {project.link && project.link !== "#" && (
-                                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link">View Project</a>
+                                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link ui-button ui-primary">アプリを開く</a>
                                     )}
                                     {project.demoLink && project.demoLink !== "#" && (
-                                        <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="project-link demo-link">Demo Video</a>
+                                        <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="project-link demo-link ui-button ui-secondary">デモ動画</a>
                                     )}
                                     {project.githubLink && project.githubLink !== "#" && (
-                                        <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="project-link github-link">GitHub</a>
+                                        <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="project-link github-link ui-button ui-secondary">ソースコード</a>
                                     )}
                                     {project.detailsLink && project.detailsLink !== "#" && (
-                                        <a href={project.detailsLink} target="_blank" rel="noopener noreferrer" className="project-link details-link">Details</a>
+                                        <a href={project.detailsLink} target="_blank" rel="noopener noreferrer" className="project-link details-link ui-button ui-secondary">制作詳細</a>
                                     )}
                                 </div>
                             </div>

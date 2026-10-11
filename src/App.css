@@ -1,91 +1,47 @@
-/* このメディアクエリは992pxのメディアクエリと重複しており、削除しました */
-/* 全体のスタイル */
+/* Shared palette and layout tokens. Button variants are defined in ui.css. */
 :root {
-  /* New Lighter/Paler Formal Palette */
-  --primary-color: #3B5984;
-  /* Darker Muted Blue (good for titles on light backgrounds) */
-  --primary-color-dark: #2E4769;
-  --primary-color-light: #5F7A9D;
-
+  --primary-color: #315B8C;
+  --primary-color-dark: #24466E;
+  --primary-color-light: #315B8C;
   --secondary-color: #ECEFF1;
-  /* Blue Grey 50 */
-  --accent-color-1: #A1887F;
-  /* Brown 300 (muted, sophisticated accent) */
-  --accent-color-2: #81C784;
-  /* Green 300 (soft, complementary accent) */
-  --text-color-primary: #37474F;
-  /* Blue Grey 800 (dark enough for readability) */
+  --accent-color-1: #315B8C;
+  --accent-color-2: #C7DDF5;
+  --text-color-primary: #243447;
   --text-color-secondary: #FFFFFF;
   --background-light: #FFFFFF;
-  --background-dark: #455A64;
-  /* Blue Grey 700 (softer dark background) */
+  --background-dark: #243B53;
   --border-color: #CFD8DC;
-  /* Blue Grey 100 */
   --shadow-color: rgba(0, 0, 0, 0.06);
-  /* Updated font and existing spacing variables */
-  --font-primary: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  --font-secondary: 'Noto Serif JP', Georgia, serif;
-  --heading-font: 'Lato', sans-serif;
-
+  --font-primary: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-secondary: var(--font-primary);
+  --heading-font: var(--font-primary);
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
   --spacing-xxl: 3rem;
-
   --border-radius-sm: 4px;
   --border-radius-md: 8px;
   --border-radius-lg: 16px;
-
   --transition-speed: 0.3s;
-
-  /* Formal, Lighter/Paler Color Palette */
   --secondary-bg-color: #F0F4F8;
-  /* Very Light Blue-Gray (for section backgrounds) */
-  /* If sections like .projects-section have a dark background from another variable or direct style,
-     that's fine, but cards within them need to be light. */
-
   --card-bg-color: #FFFFFF;
-  /* Card background: white */
   --card-border-color: #E0E0E0;
-  /* Subtle border for cards */
-
   --text-color: #333333;
-  /* Main text color (dark gray for readability on light backgrounds) */
-  --text-color-light: #666666;
-  /* Lighter text for secondary info */
-
+  --text-color-light: #526273;
   --button-text-color: #FFFFFF;
-  /* Text color for primary buttons */
-
   --light-gray: #E9ECEF;
-  /* Light gray for placeholders, subtle backgrounds */
   --medium-gray: #CED4DA;
-  /* Medium gray for borders or disabled states */
-
-  --success-color: #28A745;
-  --error-color: #DC3545;
+  --success-color: #21633E;
+  --error-color: #B42332;
   --warning-color: #FFC107;
-
-  /* Shadows & Borders */
   --shadow-light: 0 2px 4px rgba(0, 0, 0, 0.05);
   --shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.1);
   --shadow-large: 0 8px 16px rgba(0, 0, 0, 0.1);
-
   --border-radius-small: 4px;
   --border-radius-medium: 8px;
   --border-radius-large: 12px;
-
-  /* Ensure primary-color-dark is defined if used by buttons etc. */
-  /* --primary-color-dark: #3B5984; /* Example if needed */
-
-  /* Specific for project card text if needed, but general --text-color should work */
-  /* --card-text-color: #333333; */
-  /* Specific for project card title if needed, but general --primary-color should work */
-  /* --card-title-color: var(--primary-color); */
-  /* Specific for image placeholder if needed, but general --light-gray should work */
-  /* --image-placeholder-bg: #e9ecef; */
 }
 
 body {
@@ -350,7 +306,7 @@ section p {
 }
 
 .social-links a:hover {
-  color: var(--accent-color-1);
+  color: var(--accent-color-2);
   transform: translateY(-3px);
 }
 
@@ -1123,27 +1079,9 @@ section p {
   font-size: 0.9rem;
 }
 
-.project-card .project-link.demo-link {
-  background-color: var(--accent-color-1);
-}
-
-.project-card .project-link.github-link {
-  background-color: var(--accent-color-2);
-}
-
 .project-card .project-link:hover {
   background-color: var(--primary-color-dark);
   transform: translateY(-2px);
-}
-
-.project-card .project-link.demo-link:hover {
-  background-color: #8a7369;
-  /* Darker shade of accent-color-1 */
-}
-
-.project-card .project-link.github-link:hover {
-  background-color: #6aad6d;
-  /* Darker shade of accent-color-2 */
 }
 
 /* ============================================= */

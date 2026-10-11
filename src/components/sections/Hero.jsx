@@ -9,8 +9,8 @@ const Hero = () => {
                 <p className="hero-subtitle">福岡工業大学 情報工学部 情報工学科 3年 <br /> 情報技術研究部 所属</p>
                 <p className="hero-catch">好奇心と技術で未来を創る</p>
                 <div className="hero-buttons">
-                    <a href="#projects" className="primary-btn">作品一覧</a>
-                    <a href="#contact" className="secondary-btn">お問い合わせ</a>
+                    <a href="#projects" className="primary-btn ui-button ui-primary ui-on-dark">作品を見る</a>
+                    <a href="#contact" className="secondary-btn ui-button ui-secondary ui-on-dark">お問い合わせ</a>
                 </div>
                 <div className="social-links">
                     <a href="https://github.com/AliceWonerfulWorld" target="_blank" rel="noopener noreferrer">

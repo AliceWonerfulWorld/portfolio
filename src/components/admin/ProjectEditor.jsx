@@ -93,11 +93,11 @@ const ProjectEditor = () => {
             <div className="editor-header">
                 <h2>プロジェクト管理</h2>
                 <div className="header-actions">
-                    <button onClick={handleExport} className="export-btn">
+                    <button onClick={handleExport} className="export-btn ui-button ui-secondary">
                         JSONエクスポート
                     </button>
 
-                    <button onClick={handleAdd} className="add-btn">
+                    <button onClick={handleAdd} className="add-btn ui-button ui-primary">
                         新規追加
                     </button>
                 </div>
@@ -167,7 +167,7 @@ const ProjectEditor = () => {
                     </div>
 
                     <div className="form-row">
-                        <label>Githubリンク</label>
+                        <label>GitHubリンク</label>
                         <input
                             type="url"
                             value={editingProject.githubLink || ''}
@@ -177,10 +177,10 @@ const ProjectEditor = () => {
                     </div>
 
                     <div className="form-actions">
-                        <button onClick={handleSave} className="save-btn">
+                        <button onClick={handleSave} className="save-btn ui-button ui-primary">
                             保存
                         </button>
-                        <button onClick={handleCancel} className="cancel-btn">
+                        <button onClick={handleCancel} className="cancel-btn ui-button ui-secondary">
                             キャンセル
                         </button>
                     </div>
@@ -202,10 +202,10 @@ const ProjectEditor = () => {
                             </div>
                         </div>
                         <div className="project-actions">
-                            <button onClick={() => handleEdit(project, index)} className="edit-btn-small">
+                            <button onClick={() => handleEdit(project, index)} className="edit-btn-small ui-button ui-secondary">
                                 ✏️ 編集
                             </button>
-                            <button onClick={() => handleDelete(index)} className="delete-btn">
+                            <button onClick={() => handleDelete(index)} className="delete-btn ui-button ui-danger">
                                 🗑️ 削除
                             </button>
                         </div>

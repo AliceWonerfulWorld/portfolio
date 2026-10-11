@@ -1,5 +1,28 @@
 # React + Vite
 
+## Local development
+
+Use Node.js 22.x (see `.node-version` and `package.json`). Set the deployment
+environment's Node.js version to 22.x as well.
+
+```sh
+npm ci
+npm run dev
+```
+
+Run `npm run build` to create a production build.
+
+## Cloudflare Pages
+
+Use npm with the committed `package-lock.json` for dependency installation.
+Do not add a Bun or Yarn lockfile alongside it: multiple lockfiles can cause
+the deployment environment to select a different package manager.
+
+- Build command: `npm run build`
+- Build output directory: `dist`
+- Node.js: 22.x
+
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
