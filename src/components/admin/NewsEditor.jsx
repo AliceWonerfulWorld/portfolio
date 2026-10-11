@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { newsItems as initialNews } from '../../data/news';
+import useTemporaryEditor from '../../hooks/useTemporaryEditor';
 import './NewsEditor.css';
 
-const NewsEditor = () => {
-    const [newsItems, setNewsItems] = useState([]);
+const NewsEditor = ({ onRiskChange }) => {
+    const [newsItems, setNewsItems] = useState(initialNews);
     const [editingNews, setEditingNews] = useState(null);
     const [isAdding, setIsAdding] = useState(false);
 
-    // 初回レンダリング時に既存データを読み込み
-    useEffect(() => {
-        setNewsItems(initialNews);
-    }, []);
+    const editor = useTemporaryEditor(newsItems, editingNews, onRiskChange);
 
     // 新規ニュースのテンプレート
     const createEmptyNews = () => ({
@@ -22,27 +20,37 @@ const NewsEditor = () => {
 
     // 追加モード開始
     const handleAdd = () => {
-        setEditingNews(createEmptyNews());
+        if (!editor.confirmDiscard()) return;
+        const draft = createEmptyNews();
+        editor.startEditing(draft);
+        setEditingNews(draft);
         setIsAdding(true);
     };
 
     // 編集モード開始
     const handleEdit = (news, index) => {
-        setEditingNews({ ...news, index });
+        if (!editor.confirmDiscard()) return;
+        const draft = { ...news, index };
+        editor.startEditing(draft);
+        setEditingNews(draft);
         setIsAdding(false);
     };
 
     // 保存 (新規 or 更新)
     const handleSave = () => {
+        // Editor-only positions must not leak into exported content.
+        const record = { ...editingNews };
+        delete record.index;
         if (isAdding) {
-            setNewsItems([editingNews, ...newsItems]);
+            setNewsItems([record, ...newsItems]);
         } else {
           const newNewsItems = [...newsItems];
-          newNewsItems[editingNews.index] = editingNews;
+          newNewsItems[editingNews.index] = record;
           setNewsItems(newNewsItems);
         }
         setEditingNews(null);
         setIsAdding(false);
+        editor.markApplied();
     };
 
     // 削除
@@ -50,11 +58,14 @@ const NewsEditor = () => {
         if (window.confirm('本当に削除しますか?')) {
             const newNewsItems = newsItems.filter((_, i) => i !== index);
             setNewsItems(newNewsItems);
+            editor.markDeleted();
         }
     };
 
     // キャンセル
     const handleCancel = () => {
+        if (!editor.confirmDiscard()) return;
+        editor.markCancelled();
         setEditingNews(null);
         setIsAdding(false);
     };
@@ -74,6 +85,7 @@ const NewsEditor = () => {
         link.download = `news_${new Date().toISOString().slice(0, 10)}.json`;
         link.click();
         URL.revokeObjectURL(url);
+        editor.markExported();
     };
 
     return (
@@ -90,15 +102,17 @@ const NewsEditor = () => {
             </div>
           </div>
 
-          {/* 編集フォーム */}  
+          <p className="editor-status" role="status" aria-live="polite">{editor.status} {editor.needsExport && '一時反映した変更はJSON未出力です。'}</p>
+
+          {/* 編集フォーム */}
           {editingNews && (
             <div className="edit-form">
               <h3>{isAdding ? '新規ニュース' : 'ニュース編集'} </h3>
 
               <div className="form-row">
-                <label>日付 *</label>
+                <label htmlFor="news-date">日付 *</label>
                 <input
-                 type="text"
+ id="news-date"                  type="text"
                  value={editingNews.date}
                  onChange={(e) => handleChange('date', e.target.value)}
                  placeholder="2025年7月26日"
@@ -106,9 +120,9 @@ const NewsEditor = () => {
               </div>
 
               <div className="form-row">
-                <label>タイトル *</label>
+                <label htmlFor="news-title">タイトル *</label>
                 <input
-                 type="text"
+ id="news-title"                  type="text"
                  value={editingNews.title}
                  onChange={(e) => handleChange('title', e.target.value)}
                  placeholder="イベント名など"
@@ -116,8 +130,8 @@ const NewsEditor = () => {
               </div>
 
               <div className="form-row">
-                <label>内容 *</label>
-                <textarea 
+                <label htmlFor="news-content">内容 *</label>
+                <textarea id="news-content"
                  value={editingNews.content}
                  onChange={(e) => handleChange('content', e.target.value)}
                  placeholder="ニュースの内容を入力..."
@@ -126,18 +140,18 @@ const NewsEditor = () => {
               </div>
 
               <div className="form-row">
-                <label>リンク(オプション)</label>
-                <input 
+                <label htmlFor="news-link">リンク(オプション)</label>
+                <input id="news-link"
                  type="url"
                  value={editingNews.link || ''}
                  onChange={(e) => handleChange('link', e.target.value)}
                  placeholder="https://..."
-                />     
+                />
               </div>
 
               <div className="form-actions">
                 <button onClick={handleSave} className="save-btn ui-button ui-primary">
-                    保存
+                    一覧に一時反映
                 </button>
                 <button onClick={handleCancel} className="cancel-btn ui-button ui-secondary">
                     キャンセル
@@ -165,11 +179,11 @@ const NewsEditor = () => {
                   <button onClick={() => handleEdit(news, index)} className="edit-btn-small ui-button ui-secondary">
                     編集
                   </button>
-                  <button onClick={() => handleDelete(index)} className="delete-btn ui-button ui-danger">
+                  <button disabled={editingNews !== null} onClick={() => handleDelete(index)} className="delete-btn ui-button ui-danger">
                     削除
                   </button>
                 </div>
-              </div> 
+              </div>
             ))}
           </div>
         </div>

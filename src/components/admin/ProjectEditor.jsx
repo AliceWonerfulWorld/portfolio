@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { projects as initialProjects } from '../../data/projects';
+import useTemporaryEditor from '../../hooks/useTemporaryEditor';
 import './ProjectEditor.css';
 
-const ProjectEditor = () => {
-    const [projects, setProjects] = useState([]);
+const ProjectEditor = ({ onRiskChange }) => {
+    const [projects, setProjects] = useState(initialProjects);
     const [editingProject, setEditingProject] = useState(null);
     const [isAdding, setIsAdding] = useState(false);
 
-    // 初回レンダリング時に既存データを読み込み
-    useEffect(() => {
-        setProjects(initialProjects);
-    }, []);
+    const editor = useTemporaryEditor(projects, editingProject, onRiskChange);
 
     // 新規プロジェクトのテンプレート
     const createEmptyProject = () => ({
@@ -26,29 +24,39 @@ const ProjectEditor = () => {
 
     // 追加モード開始
     const handleAdd = () => {
-        setEditingProject(createEmptyProject());
+        if (!editor.confirmDiscard()) return;
+        const draft = createEmptyProject();
+        editor.startEditing(draft);
+        setEditingProject(draft);
         setIsAdding(true);
     };
 
     // 編集モード開始
     const handleEdit = (project, index) => {
-        setEditingProject({ ...project, index });
+        if (!editor.confirmDiscard()) return;
+        const draft = { ...project, index };
+        editor.startEditing(draft);
+        setEditingProject(draft);
         setIsAdding(false);
     };
 
     // 保存 (新規 or 更新)
     const handleSave = () => {
+        // Editor-only positions must not leak into exported content.
+        const record = { ...editingProject };
+        delete record.index;
         if (isAdding) {
             // 新規追加
-            setProjects([...projects, editingProject]);
+            setProjects([...projects, record]);
         } else {
             // 更新
             const newProjects = [...projects];
-            newProjects[editingProject.index] = editingProject;
+            newProjects[editingProject.index] = record;
             setProjects(newProjects)
         }
         setEditingProject(null);
         setIsAdding(false);
+        editor.markApplied();
     };
 
     // 削除
@@ -56,11 +64,14 @@ const ProjectEditor = () => {
         if (window.confirm('本当に削除しますか?')) {
             const newProjects = projects.filter((_, i) => i !== index);
             setProjects(newProjects);
+            editor.markDeleted();
         }
     };
 
     // キャンセル
     const handleCancel = () => {
+        if (!editor.confirmDiscard()) return;
+        editor.markCancelled();
         setEditingProject(null);
         setIsAdding(false);
     };
@@ -86,6 +97,7 @@ const ProjectEditor = () => {
         link.download = `projects_${new Date().toISOString().slice(0, 10)}.json`;
         link.click();
         URL.revokeObjectURL(url);
+        editor.markExported();
     };
 
     return (
@@ -103,15 +115,17 @@ const ProjectEditor = () => {
                 </div>
             </div>
 
-            {/* 編集フォーム */}
+            <p className="editor-status" role="status" aria-live="polite">{editor.status} {editor.needsExport && '一時反映した変更はJSON未出力です。'}</p>
+
+          {/* 編集フォーム */}
             {editingProject && (
                 <div className="edit-form">
                     <h3>{isAdding ? '新規プロジェクト' : 'プロジェクト編集'}</h3>
 
                     <div className="form-row">
-                        <label>タイトル *</label>
+                        <label htmlFor="project-title">タイトル *</label>
                         <input
-                            type="text"
+ id="project-title"                             type="text"
                             value={editingProject.title}
                             onChange={(e) =>
                                 handleChange('title', e.target.value)}
@@ -119,27 +133,27 @@ const ProjectEditor = () => {
                     </div>
 
                     <div className="form-row">
-                        <label>説明 *</label>
+                        <label htmlFor="project-description">説明 *</label>
                         <textarea
-                            value={editingProject.description}
+ id="project-description"                             value={editingProject.description}
                             onChange={(e) => handleChange('description', e.target.value)}
                             placeholder="プロジェクトの説明を入力..."
                             rows={4} />
                     </div>
 
                     <div className="form-row">
-                        <label>タイトル画像URL</label>
+                        <label htmlFor="project-titleImage">タイトル画像URL</label>
                         <input
-                            type="text"
+ id="project-titleImage"                             type="text"
                             value={editingProject.titleImage}
                             onChange={(e) => handleChange('titleImage', e.target.value)}
                             placeholder="https://example.com/image.jpg" />
                     </div>
 
                     <div className="form-row">
-                        <label>タグ(カンマ区切り)</label>
+                        <label htmlFor="project-tags">タグ(カンマ区切り)</label>
                         <input
-                            type="text"
+ id="project-tags"                             type="text"
                             value={editingProject.tags.join(', ')}
                             onChange={(e) => handleTagsChange(e.target.value)}
                             placeholder="React, Firebase, TypeScript"
@@ -147,9 +161,9 @@ const ProjectEditor = () => {
                     </div>
 
                     <div className="form-row">
-                        <label>プロジェクトリンク</label>
+                        <label htmlFor="project-link">プロジェクトリンク</label>
                         <input
-                            type="url"
+ id="project-link"                             type="url"
                             value={editingProject.link || ''}
                             onChange={(e) => handleChange('link', e.target.value)}
                             placeholder="https://..."
@@ -157,9 +171,9 @@ const ProjectEditor = () => {
                     </div>
 
                     <div className="form-row">
-                        <label>デモ動画リンク</label>
+                        <label htmlFor="project-demoLink">デモ動画リンク</label>
                         <input
-                            type="url"
+ id="project-demoLink"                             type="url"
                             value={editingProject.demoLink || ''}
                             onChange={(e) => handleChange('demoLink', e.target.value)}
                             placeholder="https://..."
@@ -167,9 +181,9 @@ const ProjectEditor = () => {
                     </div>
 
                     <div className="form-row">
-                        <label>GitHubリンク</label>
+                        <label htmlFor="project-githubLink">GitHubリンク</label>
                         <input
-                            type="url"
+ id="project-githubLink"                             type="url"
                             value={editingProject.githubLink || ''}
                             onChange={(e) => handleChange('githubLink', e.target.value)}
                             placeholder="https://..."
@@ -178,7 +192,7 @@ const ProjectEditor = () => {
 
                     <div className="form-actions">
                         <button onClick={handleSave} className="save-btn ui-button ui-primary">
-                            保存
+                            一覧に一時反映
                         </button>
                         <button onClick={handleCancel} className="cancel-btn ui-button ui-secondary">
                             キャンセル
@@ -205,7 +219,7 @@ const ProjectEditor = () => {
                             <button onClick={() => handleEdit(project, index)} className="edit-btn-small ui-button ui-secondary">
                                 ✏️ 編集
                             </button>
-                            <button onClick={() => handleDelete(index)} className="delete-btn ui-button ui-danger">
+                            <button disabled={editingProject !== null} onClick={() => handleDelete(index)} className="delete-btn ui-button ui-danger">
                                 🗑️ 削除
                             </button>
                         </div>

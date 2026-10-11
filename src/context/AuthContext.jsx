@@ -16,10 +16,17 @@ export const useAuth = () => {
 // Providerコンポーネント (アプリ全体を包む)
 export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
     // 初回レンダリング時にログイン状態をチェックする
     useEffect(() => {
-        setIsLoggedIn(isAuthenticated());
+        try {
+            setIsLoggedIn(isAuthenticated());
+        } catch {
+            setIsLoggedIn(false);
+        } finally {
+            setIsCheckingAuth(false);
+        }
     }, []);
 
     const login = (password) => {
@@ -36,7 +43,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, login, logout}}>
+        <AuthContext.Provider value={{ isLoggedIn, isCheckingAuth, login, logout}}>
             {children}
         </AuthContext.Provider>
     );
