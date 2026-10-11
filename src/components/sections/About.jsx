@@ -17,15 +17,15 @@ const About = () => {
                             <p className="profile-title">福岡工業大学 情報工学部 情報工学科 3年</p>
                             <div className="profile-details">
                                 <div className="detail-item">
-                                    <i className="fas fa-birthday-cake"></i>
+                                    <i aria-hidden="true" className="fas fa-birthday-cake"></i>
                                     <span>21歳</span>
                                 </div>
                                 <div className="detail-item">
-                                    <i className="fas fa-map-marker-alt"></i>
+                                    <i aria-hidden="true" className="fas fa-map-marker-alt"></i>
                                     <span>福岡県 柳川市</span>
                                 </div>
                                 <div className="detail-item">
-                                    <i className="fas fa-users"></i>
+                                    <i aria-hidden="true" className="fas fa-users"></i>
                                     <span>情報技術研究部 所属</span>
                                 </div>
                             </div>
@@ -35,7 +35,7 @@ const About = () => {
                     <div className="about-body">
                         <div className="about-section-item">
                             <h4 className="section-title">
-                                <i className="fas fa-code"></i>
+                                <i aria-hidden="true" className="fas fa-code"></i>
                                 得意領域・技術スタック
                             </h4>
                             <div className="tech-stack">
@@ -76,43 +76,43 @@ const About = () => {
 
                         <div className="about-section-item">
                             <h4 className="section-title">
-                                <i className="fas fa-heart"></i>
+                                <i aria-hidden="true" className="fas fa-heart"></i>
                                 趣味・興味
                             </h4>
                             <div className="hobbies-grid">
                                 <div className="hobby-item">
                                     <div className="hobby-icon">
-                                        <i className="fas fa-book"></i>
+                                        <i aria-hidden="true" className="fas fa-book"></i>
                                     </div>
                                     <span>読書</span>
                                 </div>
                                 <div className="hobby-item">
                                     <div className="hobby-icon">
-                                        <i className="fas fa-microphone"></i>
+                                        <i aria-hidden="true" className="fas fa-microphone"></i>
                                     </div>
                                     <span>カラオケ</span>
                                 </div>
                                 <div className="hobby-item">
                                     <div className="hobby-icon">
-                                        <i className="fas fa-utensils"></i>
+                                        <i aria-hidden="true" className="fas fa-utensils"></i>
                                     </div>
                                     <span>グルメ探索</span>
                                 </div>
                                 <div className="hobby-item">
                                     <div className="hobby-icon">
-                                        <i className="fas fa-music"></i>
+                                        <i aria-hidden="true" className="fas fa-music"></i>
                                     </div>
                                     <span>音楽鑑賞</span>
                                 </div>
                                 <div className="hobby-item">
                                     <div className="hobby-icon">
-                                        <i className="fas fa-gamepad"></i>
+                                        <i aria-hidden="true" className="fas fa-gamepad"></i>
                                     </div>
                                     <span>ゲーム開発</span>
                                 </div>
                                 <div className="hobby-item">
                                     <div className="hobby-icon">
-                                        <i className="fas fa-tv"></i>
+                                        <i aria-hidden="true" className="fas fa-tv"></i>
                                     </div>
                                     <span>アニメ鑑賞</span>
                                 </div>
@@ -121,7 +121,7 @@ const About = () => {
 
                         <div className="about-section-item">
                             <h4 className="section-title">
-                                <i className="fas fa-lightbulb"></i>
+                                <i aria-hidden="true" className="fas fa-lightbulb"></i>
                                 自己紹介
                             </h4>
                             <p className="about-description">

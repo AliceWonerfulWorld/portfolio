@@ -1749,3 +1749,27 @@ body {
   transform: translateY(-5px) scale(1.02);
   box-shadow: var(--shadow-large);
 }
+
+/* Native fragment navigation leaves breathing room above each destination. */
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 1rem;
+}
+
+/* Keep content immediately visible when the user requests less motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

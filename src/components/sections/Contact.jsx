@@ -10,11 +10,11 @@ const Contact = () => {
                     <p>ご質問やお仕事のご依頼など、お気軽にお問い合わせください。</p>
                     <div className="contact-details">
                         <div className="contact-item">
-                            <i className="fas fa-envelope"></i>
+                            <i aria-hidden="true" className="fas fa-envelope"></i>
                             <p>chebukinowashiwashi@gmail.com</p>
                         </div>
                         <div className="contact-item">
-                            <i className="fab fa-github"></i>
+                            <i aria-hidden="true" className="fab fa-github"></i>
                             <p>https://github.com/AliceWonerfulWorld</p>
                         </div>
                     </div>

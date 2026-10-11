@@ -23,11 +23,11 @@ const Footer = () => {
                     <h3>コンタクト</h3>
                     <ul className="footer-contact-list">
                         <li>
-                            <i className="fas fa-envelope"></i>
+                            <i aria-hidden="true" className="fas fa-envelope"></i>
                             <a href="mailto:chebukinowashiwashi@gmail.com">chebukinowashiwashi@gmail.com</a>
                         </li>
                         <li>
-                            <i className="fab fa-github"></i>
+                            <i aria-hidden="true" className="fab fa-github"></i>
                             <a href="https://github.com/AliceWonerfulWorld" target="_blank" rel="noopener noreferrer">github.com/AliceWonerfulWorld</a>
                         </li>
                     </ul>
