@@ -49,7 +49,7 @@ const AdminLogin = () => {
                     {error && <p className="error-message">
                         {error}</p>}
                     
-                    <button type="submit" className="login-button">
+                    <button type="submit" className="login-button ui-button ui-primary">
                         ログイン
                     </button>
                 </form>

@@ -22,10 +22,10 @@ const AdminDashboard = () => {
          <header className="admin-header">
             <h1>管理画面</h1>
             <div className="admin-actions">
-              <button onClick={() => navigate('/')} className="home-btn">
+              <button onClick={() => navigate('/')} className="home-btn ui-button ui-secondary">
                 サイトを見る
               </button>
-              <button onClick={handleLogout} className="logout-btn">
+              <button onClick={handleLogout} className="logout-btn ui-button ui-secondary">
                 ログアウト
               </button>
             </div>
