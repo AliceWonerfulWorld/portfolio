@@ -306,7 +306,7 @@ section p {
 }
 
 .social-links a:hover {
-  color: var(--accent-color-1);
+  color: var(--accent-color-2);
   transform: translateY(-3px);
 }
 
