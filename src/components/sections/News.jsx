@@ -43,7 +43,7 @@ const News = () => {
                         <p className="news-content" dangerouslySetInnerHTML={{ __html: formatNewsText(item.content) }}></p>
                         {item.link && item.link !== "#" && (
                             <a href={item.link} target="_blank" rel="noopener noreferrer" className="news-link">
-                                詳細を見る <i className="fas fa-arrow-right"></i>
+                                詳細を見る <i aria-hidden="true" className="fas fa-arrow-right"></i>
                             </a>
                         )}
                     </div>

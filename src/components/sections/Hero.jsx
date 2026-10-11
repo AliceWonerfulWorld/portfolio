@@ -13,18 +13,18 @@ const Hero = () => {
                     <a href="#contact" className="secondary-btn ui-button ui-secondary ui-on-dark">お問い合わせ</a>
                 </div>
                 <div className="social-links">
-                    <a href="https://github.com/AliceWonerfulWorld" target="_blank" rel="noopener noreferrer">
-                        <i className="fab fa-github"></i>
+                    <a aria-label="GitHub（新しいタブで開きます）" href="https://github.com/AliceWonerfulWorld" target="_blank" rel="noopener noreferrer">
+                        <i aria-hidden="true" className="fab fa-github"></i>
                     </a>
-                    <a href="https://x.com/Yuto03944691" target="_blank" rel="noopener noreferrer">
-                        <i className="fab fa-twitter"></i>
+                    <a aria-label="X（新しいタブで開きます）" href="https://x.com/Yuto03944691" target="_blank" rel="noopener noreferrer">
+                        <i aria-hidden="true" className="fab fa-twitter"></i>
                     </a>
                 </div>
 
             </div>
             <div className="scroll-indicator">
                 <span>下へスクロール</span>
-                <i className="fas fa-chevron-down"></i>
+                <i aria-hidden="true" className="fas fa-chevron-down"></i>
             </div>
         </section>
     );
