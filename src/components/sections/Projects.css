@@ -13,7 +13,7 @@
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: start;
+  align-items: stretch;
   gap: var(--spacing-lg);
   max-width: 1200px;
   padding: 0;
@@ -33,6 +33,12 @@
 
 .project-tile-featured {
   border: 2px solid var(--accent-color-2);
+}
+
+.project-tile article {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .project-tile-media {
@@ -57,6 +63,9 @@
 }
 
 .project-tile-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   padding: var(--spacing-lg);
 }
 
@@ -139,7 +148,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-sm);
-  margin-top: var(--spacing-lg);
+  margin-top: auto;
+  padding-top: var(--spacing-lg);
 }
 
 .project-tile-links .ui-button {
