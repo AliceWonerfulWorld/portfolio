@@ -24,7 +24,7 @@ const ProjectCard = ({ project }) => {
     ].filter(([url]) => url && url !== '#');
 
     return (
-        <li className={`project-tile${project.featured ? ' project-tile-featured' : ''}`}>
+        <li className="project-tile">
             <article>
                 <div className="project-tile-media">
                     {project.titleImage
@@ -32,7 +32,6 @@ const ProjectCard = ({ project }) => {
                         : <span className="project-image-placeholder">画像準備中</span>}
                 </div>
                 <div className="project-tile-content">
-                    {project.featured && <span className="project-featured-label">代表作</span>}
                     <h3>{project.title}</h3>
                     {summary && <p className="project-tile-summary">{summary}</p>}
                     {tags.length > 0 && (
@@ -74,9 +73,6 @@ const ProjectCard = ({ project }) => {
 };
 
 const Projects = ({ items = projects }) => {
-    // Sort a copy so the source data and the admin editor keep their original order.
-    const orderedProjects = [...items].sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)));
-
     return (
         <section id="projects" className="projects-section">
             <h2>Projects</h2>
@@ -84,7 +80,7 @@ const Projects = ({ items = projects }) => {
             {items.length === 0
                 ? <p className="projects-empty">作品は準備中です。公開までお待ちください。</p>
                 : <ul className="projects-grid">
-                    {orderedProjects.map((project, index) => <ProjectCard key={project.id ?? `${project.title}-${index}`} project={project} />)}
+                    {items.map((project, index) => <ProjectCard key={project.id ?? `${project.title}-${index}`} project={project} />)}
                 </ul>}
         </section>
     );

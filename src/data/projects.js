@@ -37,7 +37,6 @@ export const projects = [
         id: "nesugoshi-panic",
         title: "寝過ごしパニック！",
         summary: "技術縛りのある部内ハッカソンで制作。最優秀賞を受賞したチーム作品。",
-        featured: true,
         description: "部内ハッカソンにて作成しました。\n「Flutter,React,JavaScript,LineMessagingAPIを必ず使用する」という技術縛りの中開発したプロダクトだったので非常に開発が大変でした。\n部内ハッカソン 最優秀賞受賞 \n2025/07/05開催 技育博 vol3 展示",
         titleImage: nesupaniImage,
         contentImage: "https://via.placeholder.com/600x400?text=Nesupani+App+Screenshot",

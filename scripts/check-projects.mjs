@@ -20,7 +20,8 @@ try {
     const title = renderToStaticMarkup(React.createElement('h3', null, project.title));
     assert.equal(all.split(title).length - 1, 1, 'Every project has exactly one visible heading');
   }
-  assert.ok(all.indexOf('寝過ごしパニック！') < all.indexOf('クイズマスター'));
+  assert.ok(all.indexOf('クイズマスター') < all.indexOf('寝過ごしパニック！'));
+  assert.ok(!all.includes('代表作'));
   assert.deepEqual(projects.map(project => project.id), originalOrder, 'Rendering does not reorder editor data');
   assert.match(render([]), /作品は準備中/);
   assert.ok(!render([]).includes('<article>'));
@@ -47,7 +48,7 @@ try {
   assert.match(unusualContent, /href="https:\/\/example.com"/);
   assert.ok(!unusualContent.includes('href="#"'));
 
-  console.log('PASS: all projects, featured order, immutable data, empty/single states, optional fields, safe descriptions');
+  console.log('PASS: all projects, source order, immutable data, empty/single states, optional fields, safe descriptions');
 } finally {
   await server.close();
 }
