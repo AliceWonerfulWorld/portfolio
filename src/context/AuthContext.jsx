@@ -22,6 +22,8 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         try {
             setIsLoggedIn(isAuthenticated());
+        } catch {
+            setIsLoggedIn(false);
         } finally {
             setIsCheckingAuth(false);
         }
