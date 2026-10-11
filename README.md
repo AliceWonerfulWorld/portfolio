@@ -33,3 +33,18 @@ Currently, two official plugins are available:
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Admin foundation (#16 / #17)
+
+- [UI mockups and state rules](docs/admin-design.md)
+- [Data, API, authentication and hosting contract](docs/admin-platform.md)
+- [Migration and recovery](docs/admin-migration.md)
+
+Run `npm run dev` and open `/admin/design` to review the development-only
+mockups. Production administration requires server-side Cloudflare Access and
+D1 configuration; live editing forms and public API integration belong to
+issues #20 / #21. The public page continues using the existing static data.
+
+Checks: `npm run test:content`, `npm run test:projects`, `npm run lint`,
+`npm run build`, `npm run build:functions`. Migration preparation writes a
+reviewable bundle without modifying any database.
