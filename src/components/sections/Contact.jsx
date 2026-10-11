@@ -32,7 +32,7 @@ const Contact = () => {
                     <div className="contact-method">
                         <h3><i aria-hidden="true" className="fas fa-envelope" />メール</h3>
                         <label htmlFor="contact-email-address">メールアドレス</label>
-                        <input id="contact-email-address" type="text" value={emailAddress} readOnly
+                        <textarea id="contact-email-address" rows={2} value={emailAddress} readOnly
                             onFocus={event => event.target.select()} aria-describedby="contact-email-help" />
                         <p id="contact-email-help">アドレス欄を選択して手動でコピーすることもできます。</p>
                         <div className="contact-actions">

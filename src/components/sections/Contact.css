@@ -35,7 +35,9 @@
     margin-bottom: 0.5rem;
 }
 
-.contact-method input {
+.contact-method textarea {
+    resize: none;
+    overflow-wrap: anywhere;
     box-sizing: border-box;
     width: 100%;
     min-width: 0;
