@@ -11,12 +11,18 @@
     "build": "vite build",
     "lint": "eslint .",
     "test:projects": "node scripts/check-projects.mjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:content": "node --test tests/*.test.mjs",
+    "migration:prepare": "node scripts/prepare-content-migration.mjs",
+    "build:functions": "wrangler pages functions build --outdir=.wrangler/functions-build"
   },
   "dependencies": {
+    "jose": "^6.2.12",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.11.0"
+    "react-markdown": "^10.1.0",
+    "react-router-dom": "^7.11.0",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
@@ -27,6 +33,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
-    "vite": "^6.3.5"
+    "vite": "^6.3.5",
+    "wrangler": "^4.149.0"
   }
 }
