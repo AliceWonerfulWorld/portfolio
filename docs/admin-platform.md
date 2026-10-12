@@ -57,7 +57,7 @@ Functionsでも `Cf-Access-Jwt-Assertion` の署名（RS256）、issuer、audien
 | ニュース | `title`、`body`、`articleDate`（YYYY-MM-DD）、`link` |
 | 作品 | `title`、`summary`、`body`、`titleImage`、`titleImageAlt`、`contentImage`、`contentImageAlt`、`tags`（文字列配列）、`link`、`demoLink`、`githubLink`、`detailsLink`、`production` |
 
-本文はMarkdown文字列として保存し、生HTMLを信頼しない。#19のレンダラーは任意HTMLを解釈せず、プレビューと公開ページで共有する。既存の改行・URL・タイトルをそのまま保存する。
+本文はMarkdown文字列として保存し、生HTMLを信頼しない。共通のMarkdownContentは任意HTMLを解釈せず、編集プレビューと公開確認で共有する。公開ページには#20・#21で同じ部品を接続し、#19で本文ツールバー等を追加する。既存の改行・URL・タイトルをそのまま保存する。
 
 未完成の下書きは保存可能。入力済みのURLはhttp/https（認証情報入りは不可）でサーバー検証する。本文は10万文字、通常項目は2000文字、制作情報は5000文字、タグは50件・各200文字まで。リクエストは512KBまで。
 

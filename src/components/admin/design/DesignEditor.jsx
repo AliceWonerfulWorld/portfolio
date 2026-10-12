@@ -3,6 +3,8 @@ import { Link, useBlocker, useOutletContext, useParams } from 'react-router-dom'
 import { emptyContent, SAVE_STATES, validateContent } from '../../../../shared/content.js';
 import { PublicationBadge } from './AdminViews.jsx';
 import { designRecords } from './fixtures.js';
+import MarkdownEditor from '../MarkdownEditor';
+import MarkdownContent from '../../content/MarkdownContent';
 
 function DesignEditor({kind}) {
   const {id} = useParams();
@@ -77,7 +79,7 @@ function DesignEditor({kind}) {
         <h2>基本情報</h2>
         {field('title', kind === 'news' ? 'タイトル' : '作品名', {required: true})}
         {kind === 'news' ? field('articleDate', '記事の日付', {type: 'date', required: true, help: '日本時間のカレンダー日付です。公開時刻とは別に扱います。'}) : field('summary', '短い説明', {multiline: true, required: true})}
-        {field('body', '本文（Markdown）', {multiline: true, required: kind === 'news', help: '見出しは ##、リンクは [表示名](URL) で記述できます。画像と詳しい制作紹介は任意です。'})}
+        <MarkdownEditor value={content.body} onChange={value => update('body', value)} error={errors.body} required={kind === 'news'} />
         <h2>関連情報</h2>
         {field('link', kind === 'news' ? '関連記事URL' : '作品URL', {type: 'url'})}
         {kind === 'projects' && <>
@@ -95,7 +97,7 @@ function DesignEditor({kind}) {
       </aside>
     </div>
     <dialog ref={dialog} className="admin-publish-dialog" onClose={() => publishButton.current?.focus()} aria-labelledby="publish-dialog-title">
-      <h2 id="publish-dialog-title">{published ? '公開内容を更新しますか？' : 'この内容を公開しますか？'}</h2><p>以下の保存済み下書きが閲覧者に表示されます。</p><div className="admin-preview"><h3>{content.title}</h3><p>{content.summary || content.articleDate}</p><p>{content.body}</p></div><p>この画面では公開動作の例を表示します。</p><div className="admin-dialog-actions"><button autoFocus type="button" className="admin-button secondary" onClick={() => dialog.current.close()}>編集に戻る</button><button type="button" className="admin-button primary" disabled={busy} onClick={() => {
+      <h2 id="publish-dialog-title">{published ? '公開内容を更新しますか？' : 'この内容を公開しますか？'}</h2><p>以下の保存済み下書きが閲覧者に表示されます。</p><div className="admin-preview"><h3>{content.title}</h3><p>{content.summary || content.articleDate}</p><MarkdownContent text={content.body} /></div><p>この画面では公開動作の例を表示します。</p><div className="admin-dialog-actions"><button autoFocus type="button" className="admin-button secondary" onClick={() => dialog.current.close()}>編集に戻る</button><button type="button" className="admin-button primary" disabled={busy} onClick={() => {
         setBusy(true); setPublishProgress('publishing'); dialog.current.close();
         timeout.current = setTimeout(() => {
           setBusy(false);

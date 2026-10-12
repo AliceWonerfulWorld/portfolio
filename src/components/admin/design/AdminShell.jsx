@@ -19,10 +19,10 @@ export default function AdminShell({design = false}) {
     <div className={`admin-design${inputPriority ? ' input-priority' : ''}`}
       onFocusCapture={event => {
         if (event.target.matches('input,textarea,select')) setInputPriority(true);
-        else if (!event.target.closest('.admin-editor-actions')) setInputPriority(false);
+        else if (!event.target.closest('.admin-editor-actions,.markdown-editor')) setInputPriority(false);
       }}
       onPointerDownCapture={event => {
-        if (!event.target.closest('input,textarea,select,.admin-editor-actions')) setInputPriority(false);
+        if (!event.target.closest('input,textarea,select,.admin-editor-actions,.markdown-editor')) setInputPriority(false);
       }} onKeyDown={event => {if (event.key === 'Escape' && menuOpen) {setMenuOpen(false); toggle.current?.focus();}}}>
       <a className="admin-skip" href="#admin-main">メインコンテンツへ</a>
       <header className="admin-mobile-header">

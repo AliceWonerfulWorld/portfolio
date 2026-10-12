@@ -1,0 +1,7 @@
+.markdown-editor .markdown-tabs { display: flex; gap: 4px; padding: 4px; background: var(--admin-bg, #f3f6fa); border: 1px solid var(--admin-border, #aebdce); border-bottom: 0; border-radius: 8px 8px 0 0; }
+.markdown-editor .markdown-tabs button { min-height: 44px; min-width: 44px; padding: 10px 16px; border: 1px solid transparent; border-radius: 6px; color: var(--admin-muted, #52657a); background: transparent; font: inherit; font-weight: 600; cursor: pointer; }
+.markdown-editor .markdown-tabs button[aria-selected=true] { background: var(--admin-surface, #fff); border-color: var(--admin-border, #aebdce); color: var(--admin-blue, #245ca6); }
+.markdown-editor .markdown-panel[hidden] { display: none; }
+.markdown-editor .markdown-panel textarea { border-radius: 0 0 8px 8px; }
+.markdown-editor .markdown-preview-panel { min-height: 24rem; padding: 16px; border: 1px solid #708297; border-radius: 0 0 8px 8px; background: var(--admin-surface, #fff); }
+@media (max-width: 768px) { .markdown-editor .markdown-tabs button { flex: 1; } }
